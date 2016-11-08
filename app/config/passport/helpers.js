@@ -7,7 +7,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  connection.query("SELECT * FROM users WHERE id = ? ",
+  connection.query("SELECT * FROM User WHERE userId = ? ",
     [id],
     function(err, rows) {
       done(err, rows[0]);

@@ -5,11 +5,11 @@ const bcrypt        = require('bcryptjs');
 
 module.exports = function(salt) {
   passport.use('local-signup', new LocalStrategy({
-    usernameField : 'username',
+    usernameField : 'email',
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, username, password, done) {
-    connection.query("SELECT * FROM users WHERE username = ?",
+    connection.query("SELECT * FROM User WHERE email = ?",
       [username],
       function(err, rows) {
         if (err) {
@@ -17,17 +17,16 @@ module.exports = function(salt) {
         }
 
         if (rows.length) {
-          return done(null, false, req.flash('flashMessage', 'Sorry! That username is already taken.'));
+          return done(null, false, req.flash('flashMessage', 'Sorry! That email is already used.'));
         } else {
           const User = {
-            username: username,
             email: req.body.email,
             password: bcrypt.hashSync(password, salt)
           };
 
-          const insertQuery = "INSERT INTO users (username, email, password) values (?,?,?)";
+          const insertQuery = "INSERT INTO users (email, passwordHash) values (?,?)";
 
-          connection.query(insertQuery, [User.username, User.email, User.password],
+          connection.query(insertQuery, [User.email, User.password],
             function(err, rows) {
               if (err) {
                 console.log(err);

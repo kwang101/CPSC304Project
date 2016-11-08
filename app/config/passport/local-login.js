@@ -10,7 +10,7 @@ module.exports = function(salt) {
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, email, password, done) {
-    connection.query("SELECT * FROM users WHERE email = ?",
+    connection.query("SELECT * FROM User WHERE email = ?",
       [email],
       function(err, rows) {
         if (err)
@@ -20,7 +20,7 @@ module.exports = function(salt) {
           return done(null, false, req.flash('flashMessage', 'Invalid login details'));
         }
 
-        if (bcrypt.hashSync(password, salt) !== rows[0].password) {
+        if (bcrypt.hashSync(password, salt) !== rows[0].passwordHash) {
           return done(null, false, req.flash('flashMessage', 'Invalid login details'));
         }
 

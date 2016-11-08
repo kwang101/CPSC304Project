@@ -57,11 +57,11 @@ module.exports = function () {
             const password = bcrypt.hashSync('password', salt);
             connection.query(
                 `
-                INSERT INTO User VALUES (true, 'Edward Zhou', 12345678, true, 4432013293128423, '2018-06-05 23:59:59', ?);
-                INSERT INTO User VALUES (false, 'Mike Feeley', 12341133, true, 9877123487652342, '2020-06-05 23:59:59', ?);
-                INSERT INTO User VALUES (false, 'Steve Wolfman', 23452344, true, 1234267842641234, '2020-06-05 23:59:59', ?);
-                INSERT INTO User VALUES (false, 'Gregor Kiczales', 09289345, true, 9472837492831037, '2020-06-05 23:59:59', ?);
-                INSERT INTO User VALUES (false, 'Patrice Something', 18237481, true, 2837461923094728, '2020-06-05 23:59:59', ?);
+                INSERT INTO User VALUES (true, true, 'Edward Zhou', 'edwardzhou@cs.ubc.ca', 12345678, true, 4432013293128423, '2018-06-05 23:59:59', ?);
+                INSERT INTO User VALUES (false, false, 'Mike Feeley', 'mike@cs.ubc.ca', 12341133, true, 9877123487652342, '2020-06-05 23:59:59', ?);
+                INSERT INTO User VALUES (false, true, 'Steve Wolfman', 'steve@cs.ubc.ca', 23452344, true, 1234267842641234, '2020-06-05 23:59:59', ?);
+                INSERT INTO User VALUES (false, true, 'Gregor Kiczales', 'gregor@cs.ubc.ca', 09289345, true, 9472837492831037, '2020-06-05 23:59:59', ?);
+                INSERT INTO User VALUES (false, false, 'Patrice Something', 'patrice@cs.ubc.ca', 18237481, true, 2837461923094728, '2020-06-05 23:59:59', ?);
                 `,
                 [password, password, password, password, password],
                 function (err, result) {

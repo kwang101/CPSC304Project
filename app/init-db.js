@@ -50,8 +50,10 @@ async.waterfall([
     function(callback) {
         connection.query(
             `CREATE TABLE User (
-                isAdmin BOOL,
+                isAdmin BOOL NOT NULL DEFAULT 0,
+                isInstructor BOOL NOT NULL DEFAULT 0,
                 name VARCHAR(100),
+                email VARCHAR(100) UNIQUE,
                 userId INTEGER,
                 isUBC BOOL,
                 creditCard LONG,
