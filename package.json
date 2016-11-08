@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/jkup/hammer#readme",
   "dependencies": {
+    "async": "^2.1.2",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.14.1",
     "connect-flash": "^0.1.1",
