@@ -1,0 +1,39 @@
+include ./layouts/instr_header.jade
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-6.col-md-offset-3
+      div.Signup-Form
+        h3.Title Create New Class
+        form(id="createclass", name="createclass", action="createclass", method="post")
+          input(
+            type="text",
+            name="classname",
+            placeholder="Class Name"
+          ).form-control
+          input(
+            type="text",
+            name="location",
+            placeholder="Location"
+          ).form-control
+          input(
+            type="text",
+            name="time",
+            placeholder="Time"
+          ).form-control
+          input(
+            type="text",
+            name="capacity",
+            placeholder="Capacity"
+          ).form-control
+          input(
+            type="text",
+            name="price",
+            placeholder="Price"
+          ).form-control
+          input(
+            type="submit",
+            class="btn btn-primary form-control",
+            value="Create Class"
+          )
+
+include ./layouts/footer.jade

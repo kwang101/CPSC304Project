@@ -7,5 +7,8 @@ module.exports = function(app) {
 
   // All Instructor routes
   require('./instructor-routes')(app);
+
+  // All Create Class routes
+  require('./createclass-routes')(app);
   // Add future routes here
 }
