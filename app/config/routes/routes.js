@@ -6,4 +6,8 @@ module.exports = function(app) {
   require('./signup-routes')(app);
 
   // Add future routes here
+
+  //dashboard
+  require('./dashboard-routes')(app);
+
 }
