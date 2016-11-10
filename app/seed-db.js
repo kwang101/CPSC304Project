@@ -73,21 +73,6 @@ module.exports = function () {
         function (callback) {
             connection.query(
                 `
-                INSERT INTO UserSession VALUES (12345678, '2016-10-18 12:40:00');
-                INSERT INTO UserSession VALUES (12341133, '2016-10-17 10:40:00');
-                INSERT INTO UserSession VALUES (23452344, '2016-10-17 13:40:00');
-                INSERT INTO UserSession VALUES (09289345, '2016-10-18 12:40:00');
-                INSERT INTO UserSession VALUES (18237481, '2016-10-18 13:20:00');
-                `,
-                function (err, result) {
-                    if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
-                    else callback(null);
-                }
-            );
-        },
-        function (callback) {
-            connection.query(
-                `
                 INSERT INTO Location VALUES (150, 'Birdcoop', '1 West Mall');
                 INSERT INTO Location VALUES (50, 'Gym 1', '1 West Mall');
                 INSERT INTO Location VALUES (50, 'Gym 2', '1 West Mall');
