@@ -15,39 +15,41 @@ module.exports = function (app) {
         console.log('Error while performing Query.');
       else
         //console.log(rows);
-        for (var i = 0; i < rows.length; i++) {
-          // var row = rows[i];
-          // console.log(row.programType);
-          // programType.push(row.programType);
-          // term.push(row.term);
-          // price.push(row.price);
-          // name.push(row.name);
-          // programId.push(programId);
-        }
-      // console.log(programType);
-      // console.log(term);
-      // console.log(price);
-      // console.log(name);
-      //console.log(programId);
-      res.render('dashboard', {
-        title: 'Dashboard',
-        message: 'Dashboard',
-        userName: (req.user) ? req.user.username : undefined,
-        flashMessage: req.flash('flashMessage'),
-        rows: rows,
-        // programType: programType,
-        // term: term,
-        // price: price,
-        // name: name,
-        // programId: programId
+        // for (var i = 0; i < rows.length; i++) {
+        // var row = rows[i];
+        // console.log(row.programType);
+        // programType.push(row.programType);
+        // term.push(row.term);
+        // price.push(row.price);
+        // name.push(row.name);
+        // programId.push(programId);
+        // }
+        connection.query('SELECT * FROM cpsc304_test.user;', function (err, users, fields) {
+          if (err)
+            console.log('Error while performing Query.');
+          else
+            res.render('dashboard', {
+              title: 'Dashboard',
+              message: 'Dashboard',
+              userName: (req.user) ? req.user.username : undefined,
+              flashMessage: req.flash('flashMessage'),
+              rows: rows,
+              users: users
+              // programType: programType,
+              // term: term,
+              // price: price,
+              // name: name,
+              // programId: programId
 
-      });
+
+            });
+        });
+
     });
 
-  });
-
-  //SELECT * FROM cpsc304_test.program;
-
+    //SELECT * FROM cpsc304_test.program;
+    //
 
 
+  })
 }
