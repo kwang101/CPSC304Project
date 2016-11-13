@@ -33,7 +33,7 @@ div.container-fluid.page-wrap
                   td
                     =row.name
                   td
-                    =row.programId
+                    a(href="../programs/#{row.programId}")= row.programId
                   td
                     |<form method="post"><button type="submit" name="drop" value=row.programId>Drop</button></form>
                     
@@ -59,7 +59,7 @@ div.container-fluid.page-wrap
                   td
                     =row.name
                   td
-                    =row.programId
+                    a(href="../programs/#{row.programId}")= row.programId
                   td
                     |<form method="post"><button type="submit" name="submit" value="#{row.programId}">Register</button></form>
           

@@ -13,4 +13,7 @@ module.exports = function(app) {
   //user dashboards
   require('./users-routes')(app);
 
+  //program dashboards
+  require('./program-routes')(app);
+
 }
