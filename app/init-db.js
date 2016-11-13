@@ -69,20 +69,6 @@ async.waterfall([
     },
     function(callback) {
         connection.query(
-            `CREATE TABLE UserSession (
-                userId INTEGER,
-                expiryDate TIMESTAMP,
-                PRIMARY KEY(userId, expiryDate),
-                FOREIGN KEY (userId) REFERENCES User(userId)
-            )`,
-            function(err, result){
-                if(err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
-                else callback(null);
-            }
-        );
-    },
-    function(callback) {
-        connection.query(
             `CREATE TABLE Location (
                 capacity INTEGER,
                 name VARCHAR(30),
