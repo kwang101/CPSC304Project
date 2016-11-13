@@ -7,12 +7,11 @@ style.
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
-      h1.Title.text-center!= message
+      h1.Title.text-center Program ##{message}
       div.row
-        div.col-md-6.col-md-offset-3.text-center
-          p Here is where you can start putting content for your application. Woot
+        div.col-md-8.col-md-offset-2.text-center
           | <br>
-          p Programs
+          p Information about program ##{message}
           table 
             thead
               tr
@@ -22,7 +21,7 @@ div.container-fluid.page-wrap
                 th Name 
                 th Program Id
             tbody
-              each row, i in rows
+              each row, i in program
                 tr
                   td
                     =row.programType
@@ -34,23 +33,6 @@ div.container-fluid.page-wrap
                     =row.name
                   td
                     =row.programId
-          | <br>
-          p Users
-          table 
-            thead
-              tr
-                th Name
-                th Email
-                th User Id
-            tbody
-              each user, i in users
-                tr
-                  td
-                    =user.name
-                  td
-                    =user.email
-                  td
-                    =user.userId
 
                     
                           

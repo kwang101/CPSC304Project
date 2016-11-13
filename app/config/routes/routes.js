@@ -15,4 +15,10 @@ module.exports = function(app) {
   //dashboard
   require('./dashboard-routes')(app);
 
+  //user dashboards
+  require('./users-routes')(app);
+
+  //program dashboards
+  require('./program-routes')(app);
+
 }
