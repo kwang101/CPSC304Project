@@ -10,9 +10,6 @@ module.exports = function(app) {
   //dashboard
   require('./dashboard-routes')(app);
 
-  //register
-  require('./register-routes')(app);
-
   //user dashboards
   require('./users-routes')(app);
 

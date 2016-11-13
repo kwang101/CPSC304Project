@@ -7,10 +7,10 @@ style.
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
-      h1.Title.text-center!= message
+      h1.Title.text-center Hello User ##{message}
       div.row
-        div.col-md-6.col-md-offset-3.text-center
-          p Here is where you can start putting content for your application. Woot
+        div.col-md-8.col-md-offset-2.text-center
+          p Here you can see the progrrams you're currently in and not in. You can also add or drop classes (jk doesn't work).
           | <br>
           p Programs I'm Already Registered In
           table 
@@ -35,7 +35,7 @@ div.container-fluid.page-wrap
                   td
                     =row.programId
                   td
-                    a(href='google.ca') Drop
+                    |<form method="post"><button type="submit" name="drop" value=row.programId>Drop</button></form>
                     
           | <br>
           p Programs I'm Not Registered In
@@ -61,7 +61,7 @@ div.container-fluid.page-wrap
                   td
                     =row.programId
                   td
-                    a(href='google.ca') Register
+                    |<form method="post"><button type="submit" name="submit" value="#{row.programId}">Register</button></form>
           
 
                     
