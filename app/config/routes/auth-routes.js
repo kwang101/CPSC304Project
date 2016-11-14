@@ -1,13 +1,21 @@
 const passport = require('passport');
 
-module.exports = function(app) {
-  /**
+module.exports.routes = function(app) {
+    /**
+     * Logout user
+     **/
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+
+    /**
    * Receive Signin Form Data
   **/
   app.post('/signin',
     passport.authenticate('local-login', { failureRedirect: '/' }),
     function(req, res) {
-      res.redirect('/');
+      res.redirect('/dashboard');
   });
 
   /**
@@ -30,4 +38,17 @@ module.exports = function(app) {
     function(req, res) {
       res.redirect('/');
   });
-}
+};
+
+/**
+ * Require login routing middleware
+ */
+exports.requiresLogin = function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send({
+      message: 'User is not logged in'
+    });
+  } else {
+    return next();
+  }
+};

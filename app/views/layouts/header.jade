@@ -27,9 +27,9 @@ html
               a(href="/") Home
 
           ul.nav.navbar-nav.navbar-right
-            if userName
+            if user
               li
-                a(href="/")= userName
+                a(href="/")= user.name
               li
                 a(href="/logout") Log out
             else

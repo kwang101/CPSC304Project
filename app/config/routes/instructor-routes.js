@@ -1,19 +1,12 @@
 const passport = require('passport');
 
 module.exports = function(app) {
- /**
-   * Receive Signin Form Data
-  **/
-  app.post('/signin',
-    passport.authenticate('local-login', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/');
-  });
 
+  var requiresLogin = require('./auth-routes').requiresLogin;
   /**
-   * Display Instructor Dashboard
+   * Display Instructor Profile
   **/
-  app.get('/instructor', function(req, res) {
+  app.get('/instructor', requiresLogin, function(req, res) {
     res.render('instructor', {
       title: 'Your title',
       message: 'Your Message',

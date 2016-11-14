@@ -3,7 +3,7 @@ module.exports = function(app) {
   require('./default-routes')(app);
 
   // All signup / signin routes
-  require('./signup-routes')(app);
+  require('./auth-routes').routes(app);
 
   // All Instructor routes
   require('./instructor-routes')(app);
