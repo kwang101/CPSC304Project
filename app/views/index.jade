@@ -1,4 +1,7 @@
 include ./layouts/header.jade
+//- html head
+//- 	link(rel='stylesheet', href='/stylesheets/style.css')
+//- 	body.bkimage
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
@@ -6,5 +9,5 @@ div.container-fluid.page-wrap
       div.row
         div.col-md-6.col-md-offset-3.text-center
           p Here is where you can start putting content for your application.
-              
-include ./layouts/footer.jade
+          div(style='background-image: url(/views/background.jpg;')
+   include ./layouts/footer.jade

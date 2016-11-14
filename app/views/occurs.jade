@@ -1,0 +1,39 @@
+include ./layouts/instr_header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center Program ##{message}
+      div.row
+        div.col-md-8.col-md-offset-2.text-center
+          | <br>
+          p Information about program ##{message}
+          table 
+            thead
+              tr
+                th Program Type
+                th Term
+                th Price
+                th Name 
+                th Program Id
+            tbody
+              each row, i in program
+                tr
+                  td
+                    =row.programType
+                  td
+                    =row.term
+                  td
+                    =row.price
+                  td
+                    =row.name
+                  td
+                    =row.programId
+
+                    
+                          
+include ./layouts/footer.jade
