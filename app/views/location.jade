@@ -7,33 +7,27 @@ style.
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
-      h1.Title.text-center Program ##{message}
+      h1.Title.text-center location ##{message}
       div.row
         div.col-md-8.col-md-offset-2.text-center
           | <br>
-          p Information about program ##{message}
+          p Information about Location ##{message}
           table 
             thead
               tr
-                th Program Type
-                th Term
-                th Price
-                th Name 
-                th Program Id
+                th Capacity
+                th Name
+                th Address
             tbody
               each row, i in program
                 tr
                   td
-                    =row.programType
-                  td
-                    =row.term
-                  td
-                    =row.price
+                    =row.capacity
                   td
                     =row.name
                   td
+                    =row.address
+                  td
                     =row.programId
-
-                    
                           
 include ./layouts/footer.jade
