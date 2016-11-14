@@ -27,4 +27,4 @@ module.exports = function(salt) {
         return done(null, rows[0]);
       })
   }));
-}
+};

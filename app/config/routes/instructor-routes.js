@@ -1,19 +1,15 @@
 const passport = require('passport');
 
 module.exports = function(app) {
- /**
-   * Receive Signin Form Data
-  **/
-  app.post('/signin',
-    passport.authenticate('local-login', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/');
-  });
 
+  var requiresLogin = require('./auth-routes').requiresLogin;
+
+  var hasAuthorization = require('./auth-routes').hasAuthorization;
+  
   /**
-   * Display Instructor Dashboard
+   * Display Instructor Profile
   **/
-  app.get('/instructor', function(req, res) {
+  app.get('/instructor', requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 1}), function(req, res) {
     res.render('instructor', {
       title: 'Your title',
       message: 'Your Message',

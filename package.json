@@ -1,15 +1,16 @@
 {
-  "name": "hammer-starter",
-  "version": "0.1.0",
-  "description": "A Node.js, Express, MySQL, Passport, Jade starter kit.",
+  "name": "ubc-rec",
+  "version": "1.0.0",
+  "description": "Official Site for UBC REC",
   "main": "app/server.js",
   "scripts": {
     "start": "node app/server.js",
     "test": "mocha"
   },
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jkup/hammer.git"
+    "url": "git+https://github.com/kwang101/CPSC304Project.git"
   },
   "keywords": [
     "Express",
@@ -17,12 +18,8 @@
     "Passport",
     "Jade"
   ],
-  "author": "Jon Kuperman",
+  "author": "David Baldwynn",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jkup/hammer/issues"
-  },
-  "homepage": "https://github.com/jkup/hammer#readme",
   "dependencies": {
     "async": "^2.1.2",
     "bcryptjs": "^2.3.0",

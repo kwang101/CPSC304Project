@@ -2,8 +2,10 @@ module.exports = function (app) {
     /**
      * Display Home Page
     **/
+    var requiresLogin = require('./auth-routes').requiresLogin;
+    var hasAuthorization = require('./auth-routes').hasAuthorization;
 
-    app.get('/users/*', function (req, res) {
+    app.get('/users/*', requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), function (req, res) {
         const connection = require('../connection.js');
         var identification = req.params['0'];
         connection.query('SELECT * FROM program WHERE programId = (SELECT programId FROM cpsc304_test.registers WHERE userId = ? )',
@@ -33,7 +35,7 @@ module.exports = function (app) {
     });
 
     /*POST to user pages - register*/
-    app.post('/users/*', function (req, res) {
+    app.post('/users/*', requiresLogin, function (req, res) {
         const connection = require('../connection.js');
         var identification = req.params['0'];
         var inputValue = req.body.submit;
