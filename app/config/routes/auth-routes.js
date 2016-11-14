@@ -52,3 +52,22 @@ exports.requiresLogin = function(req, res, next) {
     return next();
   }
 };
+
+/**
+ * User authorizations routing middleware
+ */
+exports.hasAuthorization = function(roles) {
+    var that = this;
+
+    return function(req, res, next) {
+        that.requiresLogin(req, res, function() {
+            if (roles.isAdmin === req.user.isAdmin && roles.isInstructor === req.user.isInstructor && roles.isUBC === req.user.isUBC) {
+                return next();
+            } else {
+                return res.status(403).send({
+                    message: 'User is not authorized'
+                });
+            }
+        });
+    };
+};

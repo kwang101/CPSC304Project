@@ -3,8 +3,9 @@ module.exports = function (app) {
      * Display Home Page
     **/
     var requiresLogin = require('./auth-routes').requiresLogin;
+    var hasAuthorization = require('./auth-routes').hasAuthorization;
 
-    app.get('/programs/*', requiresLogin, function (req, res) {
+    app.get('/programs/*', requiresLogin, hasAuthorization({ isUBC: 1, isAdmin: 1, isInstructor: 0}), function (req, res) {
         const connection = require('../connection.js');
         var identification = req.params['0'];
         connection.query('SELECT * FROM program WHERE programId = ?',
