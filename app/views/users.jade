@@ -1,0 +1,69 @@
+include ./layouts/header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center Hello User ##{message}
+      div.row
+        div.col-md-8.col-md-offset-2.text-center
+          p Here you can see the progrrams you're currently in and not in. You can also add or drop classes (jk doesn't work).
+          | <br>
+          p Programs I'm Already Registered In
+          table 
+            thead
+              tr
+                th Program Type
+                th Term
+                th Price
+                th Name 
+                th Program Id
+            tbody
+              each row, i in registered
+                tr
+                  td
+                    =row.programType
+                  td
+                    =row.term
+                  td
+                    =row.price
+                  td
+                    =row.name
+                  td
+                    a(href="../programs/#{row.programId}")= row.programId
+                  td
+                    |<form method="post"><button type="submit" name="drop" value=row.programId>Drop</button></form>
+                    
+          | <br>
+          p Programs I'm Not Registered In
+          table 
+            thead
+              tr
+                th Program Type
+                th Term
+                th Price
+                th Name 
+                th Program Id
+            tbody
+              each row, i in notRegistered
+                tr
+                  td
+                    =row.programType
+                  td
+                    =row.term
+                  td
+                    =row.price
+                  td
+                    =row.name
+                  td
+                    a(href="../programs/#{row.programId}")= row.programId
+                  td
+                    |<form method="post"><button type="submit" name="submit" value="#{row.programId}">Register</button></form>
+          
+
+                    
+                          
+include ./layouts/footer.jade

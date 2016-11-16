@@ -9,7 +9,7 @@ module.exports = function(app) {
   /**
    * Display Instructor Profile
   **/
-  app.get('/instructor', requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 1}), function(req, res) {
+  app.get('/editclass', requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 1}), function(req, res) {
     res.render('instructor', {
       title: 'Your title',
       message: 'Your Message',

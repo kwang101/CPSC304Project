@@ -7,6 +7,8 @@ const app           = express();
 // Include Authentication Strategies
 require('./config/passport/passport');
 
+
+
 app.set('view engine', 'jade');
 app.set('views', './app/views');
 app.use(express.static('./app/public'));
@@ -18,6 +20,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+// Passing the current user to environment locals
+app.use(function(req, res, next) {
+  if (req.user) {
+    var currUser = req.user;
+    delete currUser.passwordHash;
+    res.locals.user = currUser;
+  }
+  next();
+});
+
+
 // Include all Routes
 require('./config/routes/routes')(app);
 
@@ -26,5 +39,6 @@ const server = app.listen(3000, function () {
   const port = server.address().port;
   console.log('Listening at http://localhost:%s', port);
 });
+
 
 module.exports.getApp = app;
