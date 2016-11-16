@@ -10,7 +10,9 @@ module.exports = function(app) {
 
   // All Create Class routes
   require('./createclass-routes')(app);
-  // Add future routes here
+
+  // Edit Class routes
+  require('./editclass-routes')(app);
 
   //dashboard
   require('./dashboard-routes')(app);

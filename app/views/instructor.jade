@@ -1,10 +1,37 @@
 include ./layouts/instr_header.jade
+if ()
+style.
+  table, th, td {
+  border: 1px solid black;}
+
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
-      h1.Title.text-center Instructor Dashboard
+      h1.Title.text-center Hello Instructor ##{message}
       div.row
         div.col-md-6.col-md-offset-3.text-center
-          p Here is where instructors can add, delete, and update programs.
+          p Here is where instructors can view exisitng, add, delete, and update programs.
+          | <br>
+          p Programs I'm Teaching
+          table
+          	thread
+              tr
+              	th Name
+                th Term
+                th Program Id
+                th Price
+            tbody
+              each row, i in registered
+                tr
+                  td
+                    =row.name
+                  td
+                    =row.term
+                  td
+                    a(href="../programs/#{row.programId}")= row.programId
+                  td
+                    =row.price
+                  td
+                    |<form method="post"><button type="submit" name="drop" value=row.programId>Cancel Class</button></form>
               
 include ./layouts/footer.jade
