@@ -3,9 +3,11 @@ module.exports = function (app) {
    * Display Home Page
   **/
   
-  var requiresLogin = require('./auth-routes').requiresLogin;
+  //var requiresLogin = require('./auth-routes').requiresLogin;
 
-  app.get('/dashboard', requiresLogin, function (req, res) {
+  app.get('/dashboard', 
+  //requiresLogin, 
+  function (req, res) {
     const connection = require('../connection.js');
     var programType = [];
     var term = [];

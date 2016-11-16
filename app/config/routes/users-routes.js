@@ -2,10 +2,12 @@ module.exports = function (app) {
     /**
      * Display Home Page
     **/
-    var requiresLogin = require('./auth-routes').requiresLogin;
-    var hasAuthorization = require('./auth-routes').hasAuthorization;
+    // var requiresLogin = require('./auth-routes').requiresLogin;
+    // var hasAuthorization = require('./auth-routes').hasAuthorization;
 
-    app.get('/users/*', requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), function (req, res) {
+    app.get('/users/*', 
+    // requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), 
+    function (req, res) {
         const connection = require('../connection.js');
         var identification = req.params['0'];
         connection.query('SELECT * FROM program WHERE programId = (SELECT programId FROM cpsc304_test.registers WHERE userId = ? )',
@@ -35,7 +37,9 @@ module.exports = function (app) {
     });
 
     /*POST to user pages - register*/
-    app.post('/users/*', requiresLogin, function (req, res) {
+    app.post('/users/*', 
+    // requiresLogin, 
+    function (req, res) {
         const connection = require('../connection.js');
         var identification = req.params['0'];
         var inputValue = req.body.submit;
@@ -44,9 +48,16 @@ module.exports = function (app) {
         var fees = 15;
         var programId = inputValue;
         var userId = identification;
-        console.log('boom')
+        console.log('boom');
+        // console.log(transactionId);
+        // console.log(isPaid);
+        // console.log(fees);
+        // console.log(programId);
+        // console.log(userId);
+        // res.redirect(req.get('referer'));
+        
         connection.query('INSERT INTO Registers VALUES (?, ?, ?, ?, ?)',
-            [transactionId, isPaid, fees, programId, userId],
+            //[transactionId, isPaid, fees, programId, userId],
             function (err, result) {
                 if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
                 else
