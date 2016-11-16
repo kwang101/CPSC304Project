@@ -1,6 +1,10 @@
 const passport = require('passport');
 
 module.exports = function(app) {
+
+    var requiresLogin = require('./auth-routes').requiresLogin;
+    var hasAuthorization = require('./auth-routes').hasAuthorization;
+
   /**
    * Receive Signin Form Data
   **/
@@ -13,45 +17,42 @@ module.exports = function(app) {
   /**
    * Display Admin Console
   **/
+
   app.get('/admin', function(req, res) {
     const connection = require("../connection");
     connection.query('SELECT * from cpsc304_test.Program', function(err, programs, fields) {
-
+        if (err)
+          console.log("Error in admin-routes.js: " + err);
+        else
         connection.query('SELECT * from cpsc304_test.Location', function(err, locations, fields) {
-
+            if (err)
+              console.log("Error in admin-routes.js: " + err);
+            else
             connection.query('SELECT * from cpsc304_test.User', function(err, users, fields) {
-
+                if (err)
+                  console.log("Error in admin-routes.js: " + err);
+                else
                 connection.query(
-                    'SELECT User.name, Program.name from cpsc304_test.User, cpsc304_test.TeachesClass, cpsc304_test.Program where User.userId=TeachesClass.userId and TeachesClass.programId=Program.programId', function(err, instructors, fields) {
-                        console.log("PROGRAMS");
-                        console.log(programs);
-                        console.log(programs[0]);
-                        console.log("LOCATIONS");
-                        console.log(locations);
-                        console.log("USERS");
-                        console.log(users);
-                        console.log("INSTRUCTORS");
-                        console.log(instructors);
-
-                        res.render('admin', {
-                            title: 'Your title',
-                            message: 'Your Message',
-                            userName: (req.user) ? req.user.username : undefined,
-                            flashMessage: req.flash('flashMessage'),
-                            programs : programs,
-                            locations : locations,
-                            users : users,
-                            instructors : instructors
-                        });
-                    });
+                    'SELECT name, userId from cpsc304_test.User U where U.isInstructor=1',
+                    function(err, instructors, fields) {
+                        console.log("Admin Route");
+                        if (err) {
+                            console.log("Error in admin-routes.js: " + err);
+                        } else {
+                            res.render('admin', {
+                                title: 'Admin',
+                                message: 'Admin',
+                                userName: (req.user) ? req.user.username : undefined,
+                                flashMessage: req.flash('flashMessage'),
+                                programs : programs,
+                                locations : locations,
+                                users : users,
+                                instructors : instructors
+                            });
+                        }
+                });
             });
         });
-    });
-    res.render('admin', {
-      title: 'Your title',
-      message: 'Your Message',
-      userName: (req.user) ? req.user.username : undefined,
-      flashMessage: req.flash('flashMessage')
     });
   });
 
@@ -62,5 +63,9 @@ module.exports = function(app) {
     passport.authenticate('local-signup', { failureRedirect: '/addbuilding' }),
     function(req, res) {
       res.redirect('/');
+  });
+
+  app.delete('/adminDropProgram', function(req, res) {
+
   });
 }

@@ -1,4 +1,4 @@
-include ./layouts/instr_header.jade
+include ./layouts/header.jade
 
 style.
   table, th, td {
@@ -10,7 +10,7 @@ div.container-fluid.page-wrap
     h1.Title.text-center Admin Console
     div.col-md-6.col-md-offset-3
       div.All-Classes
-        h3.Title Programs
+        h3.Title Activities
         table
           thead
             tr
@@ -19,8 +19,6 @@ div.container-fluid.page-wrap
               th ProgramId
               th Price
           tbody
-            - console.log("PROGRAMS HERE")
-            - console.log(programs)
             each row in programs
               tr
                 td
@@ -31,6 +29,8 @@ div.container-fluid.page-wrap
                   = row.programId
                 td
                   = row.price
+                form(action='/adminDropProgram', method='POST')
+                  td button(Drop
       div.All-locations
         h3.Title Locations
         table
@@ -48,15 +48,41 @@ div.container-fluid.page-wrap
                   = row.capacity
                 td
                   = row.address
-
+                td <button>Drop</button>
       div.All-users
         h3.Title Users
-
-      div.All-instructors
-        h3.Title Instructors
         table
           thead
+            tr
+              th Name
+              th Email
+              th User Id
           tbody
-
+            each row in users
+              tr
+                td
+                  = row.name
+                td
+                  = row.email
+                td
+                  = row.userId
+                td <button>Drop</button>
+      div.All-instructors
+        h3.Title Instructors
+        - console.log(instructors)
+        table
+          thead
+            tr
+              th Name
+              th User Id
+          tbody
+            each row in instructors
+              tr
+                td
+                  = row.name
+                td
+                  = row.userId
+                td <button>Drop</button>
+      p.
 
 include ./layouts/footer.jade
