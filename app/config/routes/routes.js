@@ -26,4 +26,7 @@ module.exports = function(app) {
   //program dashboards
   require('./program-routes')(app);
 
+  //query-routes ...selection, division, etc.
+  require('./query-routes')(app);
+
 }

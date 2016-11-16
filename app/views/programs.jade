@@ -21,18 +21,34 @@ div.container-fluid.page-wrap
                 th Name 
                 th Program Id
             tbody
-              each row, i in program
                 tr
-                  td
-                    =row.programType
-                  td
-                    =row.term
-                  td
-                    =row.price
-                  td
-                    =row.name
-                  td
-                    =row.programId
+                  td #{program.programType}
+                  td #{program.term}
+                  td #{program.price}
+                  td #{program.name}
+                  td #{program.programId}
+          | <br>
+          | <br>
+          table 
+            thead
+              tr
+                th Start Time
+                th End Time
+                th Day of Week
+                th Location
+                th Address
+                th Teacher
+                th # of students
+            tbody
+                tr
+                  td #{occurs.startTime}
+                  td #{occurs.endTime}
+                  td #{occurs.dayOfWeek}
+                  td #{islocated.name}
+                  td #{islocated.address}
+                  td #{teacher.name}
+                  td #{count}
+            
 
                     
                           
