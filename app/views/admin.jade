@@ -1,0 +1,62 @@
+include ./layouts/instr_header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+
+div.container-fluid.page-wrap
+  div.row
+    h1.Title.text-center Admin Console
+    div.col-md-6.col-md-offset-3
+      div.All-Classes
+        h3.Title Programs
+        table
+          thead
+            tr
+              th Program
+              th Type
+              th ProgramId
+              th Price
+          tbody
+            - console.log("PROGRAMS HERE")
+            - console.log(programs)
+            each row in programs
+              tr
+                td
+                  = row.name
+                td
+                  = row.programType
+                td
+                  = row.programId
+                td
+                  = row.price
+      div.All-locations
+        h3.Title Locations
+        table
+          thead
+            tr
+              th Location
+              th Capacity
+              th Address
+          tbody
+            each row in locations
+              tr
+                td
+                  = row.name
+                td
+                  = row.capacity
+                td
+                  = row.address
+
+      div.All-users
+        h3.Title Users
+
+      div.All-instructors
+        h3.Title Instructors
+        table
+          thead
+          tbody
+
+
+include ./layouts/footer.jade
