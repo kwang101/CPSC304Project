@@ -29,8 +29,8 @@ div.container-fluid.page-wrap
                   = row.programId
                 td
                   = row.price
-                form(action='/adminDropProgram', method='POST')
-                  td button(Drop
+                td  <form method="post" action="/adminDropProgram"><button type="submit" name="submit" value="#{row.programId}">Drop</button></form>
+
       div.All-locations
         h3.Title Locations
         table
@@ -48,7 +48,7 @@ div.container-fluid.page-wrap
                   = row.capacity
                 td
                   = row.address
-                td <button>Drop</button>
+                td  <form method="post" action="/adminDropLocation"><button type="submit" name="submit" value="#{row.name}">Drop</button></form>
       div.All-users
         h3.Title Users
         table
@@ -66,10 +66,9 @@ div.container-fluid.page-wrap
                   = row.email
                 td
                   = row.userId
-                td <button>Drop</button>
+                td  <form method="post" action="/adminDeleteUser"><button type="submit" name="submit" value="#{row.userId}">Drop</button></form>
       div.All-instructors
         h3.Title Instructors
-        - console.log(instructors)
         table
           thead
             tr
@@ -82,7 +81,7 @@ div.container-fluid.page-wrap
                   = row.name
                 td
                   = row.userId
-                td <button>Drop</button>
+                td  <form method="post" action="/adminDeleteUser"><button type="submit" name="submit" value="#{row.userId}">Drop</button></form>
       p.
 
 include ./layouts/footer.jade

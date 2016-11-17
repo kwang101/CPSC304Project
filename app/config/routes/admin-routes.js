@@ -4,21 +4,8 @@ module.exports = function(app) {
 
     var requiresLogin = require('./auth-routes').requiresLogin;
     var hasAuthorization = require('./auth-routes').hasAuthorization;
-
-  /**
-   * Receive Signin Form Data
-  **/
-  app.post('/signin',
-    passport.authenticate('local-login', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/');
-  });
-
-  /**
-   * Display Admin Console
-  **/
-
-  app.get('/admin', function(req, res) {
+  //keep a list of information so we don't have to fetch it again
+  function renderAdminDisplayInformation(req, res) {
     const connection = require("../connection");
     connection.query('SELECT * from cpsc304_test.Program', function(err, programs, fields) {
         if (err)
@@ -54,6 +41,22 @@ module.exports = function(app) {
             });
         });
     });
+  }
+  /**
+   * Receive Signin Form Data
+  **/
+  app.post('/signin',
+    passport.authenticate('local-login', { failureRedirect: '/' }),
+    function(req, res) {
+      res.redirect('/');
+  });
+
+  /**
+   * Display Admin Console
+  **/
+
+  app.get('/admin', function(req, res) {
+    renderAdminDisplayInformation(req, res);
   });
 
   /**
@@ -65,7 +68,47 @@ module.exports = function(app) {
       res.redirect('/');
   });
 
-  app.delete('/adminDropProgram', function(req, res) {
+  app.post('/adminDropProgram', function(req, res) {
+    console.log(req.body);
+    var programId = req.body.submit;
+    const connection = require("../connection");
+    //delete from program table
+    connection.query('DELETE FROM cpsc304_test.TeachesClass where programId=?',[programId], function(err, users, fields) {
+        if (err) {
+            console.log(err);
+            console.log("Error in dropping program from TeachesClass table: programId = " + programId)
+        } else {
+            connection.query('DELETE FROM cpsc304_test.Registers where programId=?', [programId], function(err, users, fields) {
+                if (err) {
+                    console.log(err);
+                    console.log("Error in dropping program from Registers table: programId = " + programId);
+                } else {
+                    connection.query('DELETE FROM cpsc304_test.IsLocated where programId = ?', [programId], function(err, users, fields) {
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            connection.query('DELETE FROM cpsc304_test.Program where programId = ?', [programId], function(err, users, fields) {
+                                if (err) {
+                                    console.log(err);
+                                    console.log("Error in dropping program from Program table: programId = " + programId);
+                                } else {
+                                    renderAdminDisplayInformation(req, res);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
 
+  });
+
+  app.post('/adminDropLocation', function(req, res) {
+    console.log(req.body);
+  });
+
+  app.post('/adminDeleteUser', function(req, res) {
+    console.log(req.body);
   });
 }
