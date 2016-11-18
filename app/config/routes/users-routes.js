@@ -5,68 +5,90 @@ module.exports = function (app) {
     // var requiresLogin = require('./auth-routes').requiresLogin;
     // var hasAuthorization = require('./auth-routes').hasAuthorization;
 
-    app.get('/users/*', 
-    // requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), 
-    function (req, res) {
-        const connection = require('../connection.js');
-        var identification = req.params['0'];
-        connection.query('SELECT * FROM program WHERE programId = (SELECT programId FROM cpsc304_test.registers WHERE userId = ? )',
-            [identification],
-            function (err, registered, fields) {
-                if (err)
-                    console.log('Error while performing Query.');
-                else
-                    connection.query('SELECT * FROM program WHERE programId != (SELECT programId FROM cpsc304_test.registers WHERE userId = ? )',
-                        [identification],
-                        function (err, notRegistered, fields) {
-                            if (err)
-                                console.log('Error while performing Query.');
-                            else
-                                console.log(identification);
-                            res.render('users', {
-                                title: identification,
-                                message: identification,
-                                userName: (req.user) ? req.user.username : undefined,
-                                flashMessage: req.flash('flashMessage'),
-                                registered: registered,
-                                notRegistered: notRegistered
+    app.get('/users/*',
+        // requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), 
+        function (req, res) {
+            const connection = require('../connection.js');
+            var identification = req.params['0'];
+            connection.query('SELECT * FROM program WHERE programId = (SELECT programId FROM registers WHERE userId = ? )',
+                [identification],
+                function (err, registered, fields) {
+                    if (err)
+                        console.log('Error while performing Query.');
+                    else
+                        connection.query('SELECT * FROM program WHERE programId != (SELECT programId FROM registers WHERE userId = ? )',
+                            [identification],
+                            function (err, notRegistered, fields) {
+                                if (err)
+                                    console.log('Error while performing Query.');
+                                else
+                                    //console.log(identification);
+                                    res.render('users', {
+                                        title: identification,
+                                        message: identification,
+                                        userName: (req.user) ? req.user.username : undefined,
+                                        flashMessage: req.flash('flashMessage'),
+                                        registered: registered,
+                                        notRegistered: notRegistered
+                                    });
                             });
-                        });
 
-            });
-    });
+                });
+        });
 
-    /*POST to user pages - register*/
-    app.post('/users/*', 
-    // requiresLogin, 
-    function (req, res) {
-        const connection = require('../connection.js');
-        var identification = req.params['0'];
-        var inputValue = req.body.submit;
-        var transactionId = Math.floor(Math.random() * 999999999) + 1000000000;
-        var isPaid = 0;
-        var fees = 15;
-        var programId = inputValue;
-        var userId = identification;
-        console.log('boom');
-        // console.log(transactionId);
-        // console.log(isPaid);
-        // console.log(fees);
-        // console.log(programId);
-        // console.log(userId);
-        // res.redirect(req.get('referer'));
-        
-        connection.query('INSERT INTO Registers VALUES (?, ?, ?, ?, ?)',
-            //[transactionId, isPaid, fees, programId, userId],
-            function (err, result) {
-                if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
-                else
-                    res.redirect(req.get('referer'));
+    //please help me
+    /*POST to user pages - register/drop*/
+    app.post('/users/*',
+        // requiresLogin, 
+        function (req, res) {
+            const connection = require('../connection.js');
+            var identification = req.params['0'];
+            var programId = req.body.register || req.body.drop;
+            var transactionId = Math.floor(Math.random() * 9999) + 1234140000;
+            var isPaid = 0;
+            var fees = 15;
+            //the following doesnt work like id want to. im just giving fees a default value of 15 for now.
+            //non UBC should just be 2 x price? idk
+            // connection.query('Select price FROM program WHERE programId = ?',
+            //     [programId],
+            //     function (err, result) {
+            //         if (err)
+            //             console.log('Error during query.');
+            //         else
+            //             fees = result;
+            //     }
+            // );
+            console.log(fees);
+            var userId = identification;
+            console.log('dropvalue');
+            console.log(req.body.drop);
+            console.log('registervalue');
+            console.log(req.body.register);
+            //this is for drop
+            if (req.body.drop != undefined) {
+                console.log(programId);
+                console.log(identification);
+                connection.query('DELETE FROM registers WHERE programId = ? AND userId = ?',
+                    [programId, identification],
+                    function (err, result) {
+                        if (err)
+                            console.log('Error while Dropping.');
+                        else
+                            res.redirect('../users/' + identification);
+                    }
+                );
+                //this is for register
+            } else {
+                // connection.query('INSERT INTO Registers SETS (?, ?, ?, ?, ?)',
+                //     [transactionId, isPaid, fees, programId, userId],
+                //     function (err, result) {
+                //         if (err)
+                //             console.log('Error while Registering.');
+                //         else
+                res.redirect(req.get('referer'));
+                //             }
+                //         );
             }
-        );
-
-    });
-
-
+        });
 
 }

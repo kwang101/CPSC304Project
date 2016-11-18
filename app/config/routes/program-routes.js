@@ -40,22 +40,24 @@ module.exports = function (app) {
                                                                 function (err, numberOfStudents, fields) {
                                                                     if (err)
                                                                         console.log('Error while performing Query.');
-                                                                    else {
-                                                                        console.log(occurs);
-                                                                        //console.log(occurs);
-                                                                        //console.log(numberOfStudents[0]['Count(*)']);
-                                                                        res.render('programs', {
-                                                                            title: identification,
-                                                                            message: identification,
-                                                                            userName: (req.user) ? req.user.username : undefined,
-                                                                            flashMessage: req.flash('flashMessage'),
-                                                                            program: program[0],
-                                                                            occurs: occurs[0],
-                                                                            islocated: islocated[0],
-                                                                            teacher: teacher[0],
-                                                                            count: numberOfStudents[0]['Count(*)']
-                                                                        });
-                                                                    }
+                                                                    else
+                                                                    //var x = (x === undefined) ? def_val : {};
+                                                                        console.log(identification);
+                                                                    console.log(teacher[0]);
+                                                                    //console.log(occurs);
+                                                                    //console.log(numberOfStudents[0]['Count(*)']);
+                                                                    res.render('programs', {
+                                                                        title: identification,
+                                                                        message: identification,
+                                                                        userName: (req.user) ? req.user.username : undefined,
+                                                                        flashMessage: req.flash('flashMessage'),
+                                                                        program: program[0],
+                                                                        occurs: occurs[0],
+                                                                        islocated: islocated[0],
+                                                                        teacher: teacher[0],
+                                                                        count: numberOfStudents[0]['Count(*)']
+                                                                    });
+>>>>>>> 02e9984fcdb2e70193364805fad7b079f7c005b8
                                                                 });
                                                     });
                                         });
