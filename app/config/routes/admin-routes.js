@@ -20,7 +20,7 @@ module.exports = function(app) {
                   console.log("Error in admin-routes.js: " + err);
                 else
                 connection.query(
-                    'SELECT name, userId from cpsc304_test.User U where U.isInstructor=1',
+                    'SELECT * from cpsc304_test.User U where U.isInstructor=1',
                     function(err, instructors, fields) {
                         console.log("Admin Route");
                         if (err) {
@@ -87,12 +87,18 @@ module.exports = function(app) {
                         if (err) {
                             console.log(err)
                         } else {
-                            connection.query('DELETE FROM cpsc304_test.Program where programId = ?', [programId], function(err, users, fields) {
+                            connection.query('DELETE FROM cpsc304_test.Occurs where programId = ?', [programId], function(err, users, fields) {
                                 if (err) {
                                     console.log(err);
-                                    console.log("Error in dropping program from Program table: programId = " + programId);
                                 } else {
-                                    renderAdminDisplayInformation(req, res);
+                                    connection.query('DELETE FROM cpsc304_test.Program where programId = ?', [programId], function(err, users, fields) {
+                                        if (err) {
+                                            console.log(err);
+                                            console.log("Error in dropping program from Program table: programId = " + programId);
+                                        } else {
+                                            renderAdminDisplayInformation(req, res);
+                                        }
+                                    });
                                 }
                             });
                         }

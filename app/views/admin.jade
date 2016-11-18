@@ -18,18 +18,30 @@ div.container-fluid.page-wrap
               th Type
               th ProgramId
               th Price
+              th Term
           tbody
             each row in programs
               tr
                 td
-                  = row.name
+                  a(href="../programs/#{row.programId}")= row.name
                 td
                   = row.programType
                 td
                   = row.programId
                 td
                   = row.price
+                td
+                  = row.term
                 td  <form method="post" action="/adminDropProgram"><button type="submit" name="submit" value="#{row.programId}">Drop</button></form>
+            <form method="post" action="/adminAddProgram">
+            tr
+              td <input type="text" name="name">
+              td <input type="text" name="programType">
+              td <input type="text" name="programId">
+              td <input type="text" name="price">
+              td <input type="text" name="term">
+              td <input type="submit" value="Add Program">
+            </form>
 
       div.All-locations
         h3.Title Locations
@@ -49,6 +61,13 @@ div.container-fluid.page-wrap
                 td
                   = row.address
                 td  <form method="post" action="/adminDropLocation"><button type="submit" name="submit" value="#{row.name}">Drop</button></form>
+            <form method="post" action="/adminAddLocation">
+            tr
+              td <input type="text" name="name">
+              td <input type="text" name="capacity">
+              td <input type="text" name="address">
+              td <input type="submit" value="Add Location">
+            </form>
       div.All-users
         h3.Title Users
         table
@@ -57,6 +76,9 @@ div.container-fluid.page-wrap
               th Name
               th Email
               th User Id
+              th IsAdmin
+              th IsInstructor
+              th IsUBC
           tbody
             each row in users
               tr
@@ -66,22 +88,56 @@ div.container-fluid.page-wrap
                   = row.email
                 td
                   = row.userId
+                td
+                  = row.isAdmin
+                td
+                  = row.isInstructor
+                td
+                  = row.isUBC
                 td  <form method="post" action="/adminDeleteUser"><button type="submit" name="submit" value="#{row.userId}">Drop</button></form>
+            <form method="post" action="/adminAddUser">
+            tr
+              td <input type="text" name="name">
+              td <input type="text" name="email">
+              td <input type="text" name="userId">
+              td <input type="text" name="isAdmin">
+              td <input type="text" name="isInstructor">
+              td <input type="text" name="isUBC">
+              td <input type="submit" value="Add User">
+            </form>
       div.All-instructors
         h3.Title Instructors
         table
           thead
             tr
               th Name
+              th Email
               th User Id
+              th IsAdmin
+              th IsUBC
           tbody
             each row in instructors
               tr
                 td
                   = row.name
                 td
+                  = row.email
+                td
                   = row.userId
+                td
+                  = row.isAdmin
+                td
+                  = row.isUBC
                 td  <form method="post" action="/adminDeleteUser"><button type="submit" name="submit" value="#{row.userId}">Drop</button></form>
+            <form method="post" action="/adminAddInstructor">
+            tr
+              td <input type="text" name="name">
+              td <input type="text" name="email">
+              td <input type="text" name="userId">
+              td <input type="text" name="isAdmin">
+              td <input type="text" name="isUBC">
+              td <input type="submit" value="Add Instr.">
+            </form>
       p.
 
 include ./layouts/footer.jade

@@ -42,9 +42,9 @@ module.exports = function () {
             connection.query(
                 `
                 INSERT INTO Occurs VALUES ('2016-01-09 11:00:00', '2016-01-09 12:00:00', 3, 000141);
-                INSERT INTO Occurs VALUES ('2016-01-10 11:00:00', '2016-01-10 12:00:00', 3, 000141);
+                INSERT INTO Occurs VALUES ('2016-01-10 11:00:00', '2016-01-10 12:00:00', 3, 000135);
                 INSERT INTO Occurs VALUES ('2016-01-11 11:00:00', '2016-01-11 12:00:00', 3, 000141);
-                INSERT INTO Occurs VALUES ('2016-01-12 11:00:00', '2016-01-12 12:00:00', 3, 000141);
+                INSERT INTO Occurs VALUES ('2016-01-12 11:00:00', '2016-01-12 12:00:00', 3, 000135);
                 INSERT INTO Occurs VALUES ('2016-01-13 11:00:00', '2016-01-13 12:00:00', 3, 000141);
                 `,
                 function (err, result) {
