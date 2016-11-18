@@ -40,7 +40,7 @@ module.exports = function (app) {
                                                                     if (err)
                                                                         console.log('Error while performing Query.');
                                                                     else
-                                                                    var x = (x === undefined) ? def_val : {};
+                                                                    //var x = (x === undefined) ? def_val : {};
                                                                         console.log(identification);
                                                                     console.log(teacher[0]);
                                                                     //console.log(occurs);
