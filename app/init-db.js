@@ -121,7 +121,7 @@ async.waterfall([
                 programId INTEGER,
                 userId INTEGER,
                 FOREIGN KEY (programId) REFERENCES Program (programId),
-                FOREIGN KEY (userId) REFERENCES User (userId)
+                FOREIGN KEY (userId) REFERENCES User (userId) ON DELETE CASCADE
             )`,
             function(err, result){
                 if(err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
