@@ -10,13 +10,13 @@ module.exports = function (app) {
         function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT * FROM program WHERE programId = (SELECT programId FROM registers WHERE userId = ? )',
+            connection.query('SELECT * FROM program WHERE programId IN (SELECT programId FROM registers WHERE userId = ? )',
                 [identification],
                 function (err, registered, fields) {
                     if (err)
                         console.log('Error while performing Query.');
                     else
-                        connection.query('SELECT * FROM program WHERE programId != (SELECT programId FROM registers WHERE userId = ? )',
+                        connection.query('SELECT * FROM program WHERE programId NOT IN (SELECT programId FROM registers WHERE userId = ? )',
                             [identification],
                             function (err, notRegistered, fields) {
                                 if (err)
@@ -74,20 +74,20 @@ module.exports = function (app) {
                         if (err)
                             console.log('Error while Dropping.');
                         else
-                            res.redirect('../users/' + identification);
+                            res.redirect(req.get('referer'));
                     }
                 );
                 //this is for register
             } else {
-                // connection.query('INSERT INTO Registers SETS (?, ?, ?, ?, ?)',
-                //     [transactionId, isPaid, fees, programId, userId],
-                //     function (err, result) {
-                //         if (err)
-                //             console.log('Error while Registering.');
-                //         else
+                connection.query('INSERT INTO Registers VALUES (?, ?, ?, ?, ?)',
+                    [transactionId, isPaid, fees, programId, userId],
+                    function (err, result) {
+                        if (err)
+                            console.log('Error while Registering.');
+                        else
                 res.redirect(req.get('referer'));
-                //             }
-                //         );
+                            }
+                        );
             }
         });
 

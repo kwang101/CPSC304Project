@@ -118,4 +118,27 @@ module.exports = function(app) {
                         });
                     });
         })
+
+        app.get('/division',
+        // requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), 
+        function(req, res) {
+            const connection = require('../connection.js');
+            var identification = req.params['0'];
+            connection.query('SELECT s.name FROM cpsc304_test.user s WHERE NOT EXISTS (SELECT programId FROM cpsc304_test.classes p WHERE NOT EXISTS (SELECT s.userId FROM cpsc304_test.registers r WHERE s.userId=r.userId AND p.programId = r.programId));',
+                [identification],
+                function(err, users, fields) {
+                    if (err)
+                        console.log('Error while performing Query.');
+                    else
+                        //     console.log(identification);
+                        // console.log(programs);
+                        res.render('division', {
+                            title: identification,
+                            message: identification,
+                            userName: (req.user) ? req.user.username : undefined,
+                            flashMessage: req.flash('flashMessage'),
+                            users: users
+                        });
+                });
+        })
 }
