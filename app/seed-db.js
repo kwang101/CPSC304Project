@@ -119,6 +119,10 @@ module.exports = function () {
             connection.query(
                 `
                 INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000132, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000133, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000135, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000136, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000137, 12345678);
                 INSERT INTO Registers VALUES (00001234141321, true, 15.00, 000135, 12341133);
                 INSERT INTO Registers VALUES (00001234149812, true, 15.00, 000135, 23452344);
                 INSERT INTO Registers VALUES (00001234145893, true, 15.00, 000135, 09289345);
