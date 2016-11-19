@@ -117,4 +117,19 @@ module.exports = function(app) {
   app.post('/adminDeleteUser', function(req, res) {
     console.log(req.body);
   });
+
+  app.post('/adminAddProgram', function(req, res) {
+    console.log(req.body);
+    const connection = require("../connection");
+    connection.query('INSERT INTO cpsc304_test.Program VALUES (?, ?, ?, ?, ?)',
+        [req.body.programType, req.body.term, req.body.price, req.body.name, req.body.programId],
+        function(err, result) {
+            if (err) {
+                console.log(err);
+                console.log("Error while adding program: " + req.body.name);
+            } else {
+                renderAdminDisplayInformation(req, res);
+            }
+        });
+  });
 }

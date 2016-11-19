@@ -61,7 +61,6 @@ module.exports = function (app) {
                                                                         teacher: teacher[0],
                                                                         count: numberOfStudents[0]['Count(*)']
                                                                     });
->>>>>>> 02e9984fcdb2e70193364805fad7b079f7c005b8
                                                                 });
                                                     });
                                         });
