@@ -22,12 +22,16 @@ module.exports = function (app) {
                                 if (err)
                                     console.log('Error while performing Query.');
                                 else
+                                if (occurs.length == 0) occurs = [{ startTime: 'N/A', endTime: 'N/A', dayOfWeek: 'N/A'}];
                                     connection.query('SELECT * FROM islocated WHERE programId = ?',
                                         [identification],
                                         function (err, islocated, fields) {
                                             if (err)
                                                 console.log('Error while performing Query.');
                                             else
+                                            if (islocated.length == 0) islocated = [{ name: 'N/A', address: 'N/A' }];
+                                            //console.log('islocated');
+                                            //console.log(islocated);
                                                 connection.query('Select * FROM user Where userID = (SELECT userID FROM teachesclass Where programId = ?);',
                                                     [identification],
                                                     function (err, teacher, fields) {
@@ -35,6 +39,9 @@ module.exports = function (app) {
                                                         if (err)
                                                             console.log('Error while performing Query.');
                                                         else
+                                                            if (teacher.length == 0) teacher = [{ name: 'N/A'}];
+                                                            console.log(teacher.length);
+                                                            console.log(teacher);
                                                             connection.query('Select Count(*) From registers Where programId = ?',
                                                                 [identification],
                                                                 function (err, numberOfStudents, fields) {
@@ -43,9 +50,6 @@ module.exports = function (app) {
                                                                     else
                                                                     //var x = (x === undefined) ? def_val : {};
                                                                         console.log(identification);
-                                                                    console.log(teacher[0]);
-                                                                    //console.log(occurs);
-                                                                    //console.log(numberOfStudents[0]['Count(*)']);
                                                                     res.render('programs', {
                                                                         title: identification,
                                                                         message: identification,

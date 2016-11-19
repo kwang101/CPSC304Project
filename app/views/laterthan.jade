@@ -1,0 +1,74 @@
+include ./layouts/header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center Programs At #{message} Or After
+      div.row
+        div.col-md-6.col-md-offset-3.text-center
+          | <br>
+          table 
+            thead
+              tr
+                th Program Type
+                th Term
+                th Name
+                th Start Time
+                th End Time
+                th Day Of Week
+                th Program Id
+            tbody
+              each row, i in programs
+                tr
+                  td
+                    =row.programType
+                  td
+                    =row.term
+                  td
+                    =row.name
+                  td
+                    =row.startTime
+                  td
+                    =row.endTime
+                  td
+                    =row.dayOfWeek
+                  td
+                    a(href="../programs/#{row.programId}")= row.programId
+          | <br>
+          | <br>
+          | <form method="post">Look For Programs Later Than<select name="number">
+          |  <option value="00:00">00:00</option>
+          |  <option value="01:00">01:00</option>
+          |  <option value="02:00">02:00</option>
+          |  <option value="03:00">03:00</option>
+          |  <option value="04:00">04:00</option>
+          |  <option value="05:00">05:00</option>
+          |  <option value="06:00">06:00</option>
+          |  <option value="07:00">06:00</option>
+          |  <option value="08:00">07:00</option>
+          |  <option value="09:00">08:00</option>
+          |  <option value="10:00">10:00</option>
+          |  <option value="11:00">11:00</option>
+          |  <option value="12:00">12:00</option>
+          |  <option value="13:00">13:00</option>
+          |  <option value="14:00">14:00</option>
+          |  <option value="15:00">15:00</option>
+          |  <option value="16:00">16:00</option>
+          |  <option value="17:00">17:00</option>
+          |  <option value="18:00">18:00</option>
+          |  <option value="19:00">19:00</option>
+          |  <option value="20:00">20:00</option>
+          |  <option value="21:00">21:00</option>
+          |  <option value="22:00">22:00</option>
+          |  <option value="23:00">23:00</option>
+          |  </select> &nbsp <input type="submit" value="Submit"></form>
+          | <br>
+          //| <form method="post">Look For Programs Cheaper Than <input type ="number" name="number"><button name="drop" value=input>Go</button></form>
+          | <br>
+                    
+                          
+include ./layouts/footer.jade

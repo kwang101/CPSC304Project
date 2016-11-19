@@ -31,7 +31,7 @@ div.container-fluid.page-wrap
                   td
                     =row.name
                   td
-                    =row.programId
+                    a(href="../programs/#{row.programId}")= row.programId
           | <br>
           a(href="../expensive/most") Most Expensive Programs <br>
           a(href="../expensive/least") Least Expensive Programs
