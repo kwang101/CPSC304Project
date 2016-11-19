@@ -125,25 +125,24 @@ module.exports = function (app) {
                             console.log(rows);
                         res.render('avg', {
                             title: identification,
-                            message: 'Average Cost Of Programs By Type',
+                            message: 'Average Cost',
                             userName: (req.user) ? req.user.username : undefined,
                             flashMessage: req.flash('flashMessage'),
                             rows: rows,
                         });
                     });
             }
-            else
-                connection.query('SELECT programType, AVG(price) AS average FROM program GROUP BY programType',
+            else if (identification == "capacity")
+                connection.query('SELECT programType, AVG(capacity) AS average FROM programcapacity GROUP BY programType',
                     function (err, rows, fields) {
                         if (err)
                             console.log('Error while performing Query.');
                         else
                             //     console.log(identification);
                             console.log(rows);
-                        rows['AVG(price)'];
                         res.render('avg', {
                             title: identification,
-                            message: 'Most Expensive Programs',
+                            message: 'Average Capacity',
                             userName: (req.user) ? req.user.username : undefined,
                             flashMessage: req.flash('flashMessage'),
                             rows: rows,
