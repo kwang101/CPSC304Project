@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function(app) {
     /**
      * Display Home Page
     **/
@@ -7,18 +7,18 @@ module.exports = function (app) {
 
     app.get('/users/*',
         // requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), 
-        function (req, res) {
+        function(req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
             connection.query('SELECT * FROM program WHERE programId IN (SELECT programId FROM registers WHERE userId = ? )',
                 [identification],
-                function (err, registered, fields) {
+                function(err, registered, fields) {
                     if (err)
                         console.log('Error while performing Query.');
                     else
                         connection.query('SELECT * FROM program WHERE programId NOT IN (SELECT programId FROM registers WHERE userId = ? )',
                             [identification],
-                            function (err, notRegistered, fields) {
+                            function(err, notRegistered, fields) {
                                 if (err)
                                     console.log('Error while performing Query.');
                                 else
@@ -36,28 +36,18 @@ module.exports = function (app) {
                 });
         });
 
-    //please help me
+    //
     /*POST to user pages - register/drop*/
     app.post('/users/*',
         // requiresLogin, 
-        function (req, res) {
+        function(req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
             var programId = req.body.register || req.body.drop;
             var transactionId = Math.floor(Math.random() * 9999) + 1234140000;
             var isPaid = 0;
-            var fees = 15;
-            //the following doesnt work like id want to. im just giving fees a default value of 15 for now.
-            //non UBC should just be 2 x price? idk
-            // connection.query('Select price FROM program WHERE programId = ?',
-            //     [programId],
-            //     function (err, result) {
-            //         if (err)
-            //             console.log('Error during query.');
-            //         else
-            //             fees = result;
-            //     }
-            // );
+            var fees = 0;
+            var isUBC = 1;
             console.log(fees);
             var userId = identification;
             console.log('dropvalue');
@@ -70,7 +60,7 @@ module.exports = function (app) {
                 console.log(identification);
                 connection.query('DELETE FROM registers WHERE programId = ? AND userId = ?',
                     [programId, identification],
-                    function (err, result) {
+                    function(err, result) {
                         if (err)
                             console.log('Error while Dropping.');
                         else
@@ -79,15 +69,38 @@ module.exports = function (app) {
                 );
                 //this is for register
             } else {
-                connection.query('INSERT INTO Registers VALUES (?, ?, ?, ?, ?)',
-                    [transactionId, isPaid, fees, programId, userId],
-                    function (err, result) {
+                connection.query('SELECT * FROM user WHERE userId = ?',
+                    [identification],
+                    function(err, user, fields) {
                         if (err)
-                            console.log('Error while Registering.');
+                            console.log('Error while performing Query.');
                         else
-                res.redirect(req.get('referer'));
-                            }
-                        );
+                            //console.log(identification);
+                            //console.log(user[0]['isUBC']);
+                            if (user[0]['isUBC'] == 1) isUBC = 1
+                            else isUBC = 2;
+                        console.log('isUBC')
+                        console.log(isUBC);
+                        connection.query('SELECT * FROM program WHERE programId = ?',
+                            [programId],
+                            function(err, program, fields) {
+                                if (err)
+                                    console.log('Error while performing Query.');
+                                else
+                                    fees = program[0]['price'];
+                                console.log('fees');
+                                console.log(fees);
+                                connection.query('INSERT INTO Registers VALUES (?, ?, ?, ?, ?)',
+                                    [transactionId, isPaid, fees * isUBC, programId, userId],
+                                    function(err, result) {
+                                        if (err)
+                                            console.log('Error while Registering.');
+                                        else
+                                            res.redirect(req.get('referer'));
+                                    }
+                                );
+                            });
+                    });
             }
         });
 
