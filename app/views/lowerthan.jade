@@ -31,7 +31,7 @@ div.container-fluid.page-wrap
                   td
                     =row.name
                   td
-                    =row.programId
+                    a(href="../programs/#{row.programId}")= row.programId
           | <br>
           | <br>
           | <form method="post">Look For Programs Cheaper Than <input type ="number" name="number"><button name="drop" value=input>Go</button></form>
