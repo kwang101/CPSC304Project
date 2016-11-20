@@ -24,16 +24,18 @@ module.exports = function(salt) {
             password: bcrypt.hashSync(password, salt)
           };
 
-          const insertQuery = "INSERT INTO users (email, passwordHash) values (?,?)";
+          const insertQuery = "INSERT INTO User (email, passwordHash, isUBC) values (?,?, ?)";
 
-          connection.query(insertQuery, [User.email, User.password],
-            function(err, rows) {
+          req.body.isUBC = req.body.isUBC == 'true';
+
+          connection.query(insertQuery, [User.email, User.password, req.body.isUBC],
+            function(err, row) {
               if (err) {
                 console.log(err);
                 return done(null, false, req.flash('flashMessage', 'Sorry! That email is already taken.'));
               }
 
-              User.id = rows.insertId;
+              User.userId = row.userId;
 
               return done(null, User);
           });

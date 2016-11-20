@@ -41,11 +41,14 @@ module.exports = function () {
         function (callback) {
             connection.query(
                 `
-                INSERT INTO Occurs VALUES ('2016-01-09 11:00:00', '2016-01-09 12:00:00', 3, 000141);
-                INSERT INTO Occurs VALUES ('2016-01-10 11:00:00', '2016-01-10 12:00:00', 3, 000141);
-                INSERT INTO Occurs VALUES ('2016-01-11 11:00:00', '2016-01-11 12:00:00', 3, 000141);
-                INSERT INTO Occurs VALUES ('2016-01-12 11:00:00', '2016-01-12 12:00:00', 3, 000141);
-                INSERT INTO Occurs VALUES ('2016-01-13 11:00:00', '2016-01-13 12:00:00', 3, 000141);
+                INSERT INTO Occurs VALUES ('19:00:00', '20:00:00', 1, 000132);
+                INSERT INTO Occurs VALUES ('20:00:00', '21:00:00', 1, 000133);
+                INSERT INTO Occurs VALUES ('19:00:00', '20:00:00', 2, 000135);
+                INSERT INTO Occurs VALUES ('20:00:00', '21:00:00', 2, 000136);
+                INSERT INTO Occurs VALUES ('19:00:00', '20:00:00', 3, 000137);
+                INSERT INTO Occurs VALUES ('20:00:00', '21:00:00', 3, 000140);
+                INSERT INTO Occurs VALUES ('19:00:00', '20:00:00', 4, 000141);
+                INSERT INTO Occurs VALUES ('20:00:00', '21:00:00', 4, 000152);
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
@@ -78,6 +81,7 @@ module.exports = function () {
                 INSERT INTO Location VALUES (50, 'Gym 2', '1 West Mall');
                 INSERT INTO Location VALUES (50, 'Gym 3', '1 West Mall');
                 INSERT INTO Location VALUES (100, 'War Memorial Gym', '2 University Boulevard');
+                INSERT INTO Location VALUES (100, 'Hugh Dempster Pavillion', '6245 Agronomy Road');
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
@@ -88,11 +92,14 @@ module.exports = function () {
         function (callback) {
             connection.query(
                 `
-                INSERT INTO IsLocated VALUES ('Birdcoop', '1 West Mall', 000140);
-                INSERT INTO IsLocated VALUES ('War Memorial Gym', '2 University Boulevard', 000152);
+                INSERT INTO IsLocated VALUES ('Gym 1', '1 West Mall', 000132);
+                INSERT INTO IsLocated VALUES ('Hugh Dempster Pavillion', '6245 Agronomy Road', 000133);
                 INSERT INTO IsLocated VALUES ('Birdcoop', '1 West Mall', 000135);
-                INSERT INTO IsLocated VALUES ('Birdcoop', '1 West Mall', 000132);
+                INSERT INTO IsLocated VALUES ('Birdcoop', '1 West Mall', 000136);
+                INSERT INTO IsLocated VALUES ('Gym 2', '1 West Mall', 000137);
+                INSERT INTO IsLocated VALUES ('Gym 2', '1 West Mall', 000140);
                 INSERT INTO IsLocated VALUES ('Gym 2', '1 West Mall', 000141);
+                INSERT INTO IsLocated VALUES ('War Memorial Gym', '2 University Boulevard', 000152);
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
@@ -119,6 +126,10 @@ module.exports = function () {
             connection.query(
                 `
                 INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000132, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000133, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000135, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000136, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000137, 12345678);
                 INSERT INTO Registers VALUES (00001234141321, true, 15.00, 000135, 12341133);
                 INSERT INTO Registers VALUES (00001234149812, true, 15.00, 000135, 23452344);
                 INSERT INTO Registers VALUES (00001234145893, true, 15.00, 000135, 09289345);

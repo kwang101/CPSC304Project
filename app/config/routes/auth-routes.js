@@ -23,8 +23,8 @@ module.exports.routes = function(app) {
   **/
   app.get('/signup', function(req, res) {
     res.render('signup', {
-      title: 'Your title',
-      message: 'Your Message',
+      title: 'Signup to UBC Rec',
+      message: 'Signup for UBC Rec',
       userName: (req.user) ? req.user.username : undefined,
       flashMessage: req.flash('flashMessage')
     });

@@ -1,0 +1,29 @@
+include ./layouts/header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center #{message}
+      div.row
+        div.col-md-8.col-md-offset-2.text-center
+          | <br>
+          table 
+            thead
+              tr
+                th Class Type
+                th Avg Price
+            tbody
+              each row, i in rows
+                tr
+                  td
+                    =row.programType
+                  td
+                    =row.average
+          | <br>
+          | <br>    
+                          
+include ./layouts/footer.jade

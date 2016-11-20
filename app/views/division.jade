@@ -1,0 +1,28 @@
+include ./layouts/header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center Division
+      div.row
+        div.col-md-6.col-md-offset-3.text-center
+          p Users Who are Enrolled In All Classes
+          | <br>
+          table 
+            thead
+              tr
+                th Name
+            tbody
+              each row, i in users
+                tr
+                  td
+                    =row.name
+          | <br>
+
+                    
+                          
+include ./layouts/footer.jade

@@ -35,7 +35,7 @@ div.container-fluid.page-wrap
                   td
                     a(href="../programs/#{row.programId}")= row.programId
                   td
-                    |<form method="post"><button type="submit" name="drop" value=row.programId>Drop</button></form>
+                    |<form method="post"><button type="submit" name="drop" value="#{row.programId}">Drop</button></form>
                     
           | <br>
           p Programs I'm Not Registered In
@@ -61,7 +61,7 @@ div.container-fluid.page-wrap
                   td
                     a(href="../programs/#{row.programId}")= row.programId
                   td
-                    |<form method="post"><button type="submit" name="submit" value="#{row.programId}">Register</button></form>
+                    |<form method="post"><button type="submit" name="register" value="#{row.programId}">Register</button></form>
           
           | <br>
           | <br>
