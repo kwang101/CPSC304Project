@@ -7,15 +7,15 @@ style.
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
-      h1.Title.text-center Division
+      //h1.Title.text-center Division
       div.row
-        div.col-md-6.col-md-offset-3.text-center
-          p Users Who are Enrolled In All Classes
+        div
           | <br>
-          table 
+          table.table-striped.table-bordered
             thead
+            h4 Users Who are Enrolled In All Classes
               tr
-                th Name
+                th Name &nbsp
             tbody
               each row, i in users
                 tr

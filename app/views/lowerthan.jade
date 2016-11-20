@@ -1,24 +1,22 @@
 include ./layouts/header.jade
 
-style.
-  table, th, td {
-  border: 1px solid black;}
 
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
-      h1.Title.text-center Programs cheaper than $#{message}
+      //h1.Title Programs cheaper than $#{message}
       div.row
-        div.col-md-6.col-md-offset-3.text-center
+        div
           | <br>
-          table 
-            thead
+          table.table-striped.table-bordered
+            thead 
+            h4 Programs cheaper than $#{message}
               tr
-                th Program Type
-                th Term
-                th Price
-                th Name 
-                th Program Id
+                th Program Type &nbsp
+                th Term &nbsp
+                th Price &nbsp
+                th Name &nbsp
+                th Program ID &nbsp
             tbody
               each row, i in programs
                 tr

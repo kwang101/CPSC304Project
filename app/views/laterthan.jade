@@ -1,26 +1,23 @@
 include ./layouts/header.jade
 
-style.
-  table, th, td {
-  border: 1px solid black;}
-
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
-      h1.Title.text-center Programs At #{message} Or After
+      //h1.Title Programs At #{message} Or After
       div.row
-        div.col-md-6.col-md-offset-3.text-center
+        div
           | <br>
-          table 
+          table.table-striped.table-bordered
             thead
+            h4 Programs At #{message} Or After
               tr
-                th Program Type
-                th Term
-                th Name
-                th Start Time
-                th End Time
-                th Day Of Week
-                th Program Id
+                th Program Type &nbsp
+                th Term &nbsp
+                th Name &nbsp
+                th Start Time &nbsp
+                th End Time &nbsp
+                th Day Of Week &nbsp
+                th Program ID &nbsp
             tbody
               each row, i in programs
                 tr

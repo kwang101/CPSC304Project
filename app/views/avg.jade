@@ -7,15 +7,16 @@ style.
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
-      h1.Title.text-center #{message} By Program Type
+      //h1.Title.text-center #{message} By Program Type
       div.row
-        div.col-md-8.col-md-offset-2.text-center
+        div
           | <br>
-          table 
+          table.table-striped.table-bordered
             thead
+            h4  #{message} By Program Type
               tr
-                th Class Type
-                th Average #{message}
+                th Class Type &nbsp
+                th #{message} &nbsp
             tbody
               each row, i in rows
                 tr
