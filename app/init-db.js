@@ -140,6 +140,19 @@ async.waterfall([
                 else callback(null);
             }
         );
+    },
+    function (callback) {
+        connection.query(
+            `CREATE VIEW programcapacity AS
+            SELECT programType, p.programId, capacity 
+            FROM program p, islocated i, location l
+            WHERE p.programId = i.programId AND i.name = l.name
+            `,
+            function (err, result) {
+                if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
+                else callback(null);
+            }
+        );
     }
 ], function (err, result) {
     if (err) {
