@@ -9,18 +9,18 @@ div.container-fluid.page-wrap
     div.col-md-10.col-md-offset-1
       h1.Title.text-center Hello User ##{message}
       div.row
-        div.col-md-8.col-md-offset-2.text-center
-          p Here you can see the progrrams you're currently in and not in. You can also add or drop classes (jk doesn't work).
+        div
+          p.text-center Here you can see the progrrams you're currently in and not in. You can also add or drop classes.
           | <br>
           p Programs I'm Already Registered In
-          table 
+          table.table-striped.table-bordered
             thead
               tr
-                th Program Type
-                th Term
-                th Price
-                th Name 
-                th Program Id
+                th Program Type &nbsp
+                th Term &nbsp
+                th Price &nbsp
+                th Name &nbsp
+                th Program Id &nbsp
             tbody
               each row, i in registered
                 tr
@@ -39,14 +39,14 @@ div.container-fluid.page-wrap
                     
           | <br>
           p Programs I'm Not Registered In
-          table 
+          table.table-striped.table-bordered
             thead
               tr
-                th Program Type
-                th Term
-                th Price
-                th Name 
-                th Program Id
+                th Program Type &nbsp
+                th Term &nbsp
+                th Price &nbsp
+                th Name &nbsp
+                th Program Id &nbsp
             tbody
               each row, i in notRegistered
                 tr

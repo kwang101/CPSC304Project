@@ -24,13 +24,17 @@ module.exports = function () {
             connection.query(
                 `
                 INSERT INTO Program VALUES ('class', 2, 20.00, 'Yoga', 000132);
+                INSERT INTO Program VALUES ('class', 2, 50.00, 'Twerking', 000134);
                 INSERT INTO Program VALUES ('class', 1, 15.00, 'Pilates', 000135);
                 INSERT INTO Program VALUES ('class', 2, 20.00, 'T-Bagging', 000137);
                 INSERT INTO Program VALUES ('class', 1, 15.00, 'Meme-ing', 000133);
                 INSERT INTO Program VALUES ('class', 1, 15.00, 'Wrestling', 000136);
                 INSERT INTO Program VALUES ('dropin', 1, 10.00, 'Basketball Drop-in', 000140);
                 INSERT INTO Program VALUES ('dropin', 1, 10.00, 'Volleyball Drop-in', 000141);
-                INSERT INTO Program VALUES ('intramural', 1, 0, 'Volleyball Intramural Tier 2', 000152);
+                INSERT INTO Program VALUES ('intramural', 1, 0.00, 'Volleyball Intramural Tier 2', 000152);
+                INSERT INTO Program VALUES ('intramural', 2, 10.00, 'Volleyball Intramural Tier 1', 000153);
+                INSERT INTO Program VALUES ('intramural', 1, 5.00, 'Basketball Intramural Tier 2', 000154);
+                INSERT INTO Program VALUES ('intramural', 2, 10.00, 'Basketball Intramural Tier 1', 000155);
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
@@ -43,12 +47,16 @@ module.exports = function () {
                 `
                 INSERT INTO Occurs VALUES ('19:00:00', '20:00:00', 1, 000132);
                 INSERT INTO Occurs VALUES ('20:00:00', '21:00:00', 1, 000133);
+                INSERT INTO Occurs VALUES ('23:00:00', '24:00:00', 5, 000134);
                 INSERT INTO Occurs VALUES ('19:00:00', '20:00:00', 2, 000135);
                 INSERT INTO Occurs VALUES ('20:00:00', '21:00:00', 2, 000136);
                 INSERT INTO Occurs VALUES ('19:00:00', '20:00:00', 3, 000137);
                 INSERT INTO Occurs VALUES ('20:00:00', '21:00:00', 3, 000140);
                 INSERT INTO Occurs VALUES ('19:00:00', '20:00:00', 4, 000141);
                 INSERT INTO Occurs VALUES ('20:00:00', '21:00:00', 4, 000152);
+                INSERT INTO Occurs VALUES ('21:00:00', '22:00:00', 4, 000153);
+                INSERT INTO Occurs VALUES ('09:00:00', '10:00:00', 6, 000154);
+                INSERT INTO Occurs VALUES ('10:00:00', '22:00:00', 6, 000155);
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
@@ -94,12 +102,16 @@ module.exports = function () {
                 `
                 INSERT INTO IsLocated VALUES ('Gym 1', '1 West Mall', 000132);
                 INSERT INTO IsLocated VALUES ('Hugh Dempster Pavillion', '6245 Agronomy Road', 000133);
+                INSERT INTO IsLocated VALUES ('Gym 3', '1 West Mall', 000134);
                 INSERT INTO IsLocated VALUES ('Birdcoop', '1 West Mall', 000135);
                 INSERT INTO IsLocated VALUES ('Birdcoop', '1 West Mall', 000136);
                 INSERT INTO IsLocated VALUES ('Gym 2', '1 West Mall', 000137);
                 INSERT INTO IsLocated VALUES ('Gym 2', '1 West Mall', 000140);
                 INSERT INTO IsLocated VALUES ('Gym 2', '1 West Mall', 000141);
                 INSERT INTO IsLocated VALUES ('War Memorial Gym', '2 University Boulevard', 000152);
+                INSERT INTO IsLocated VALUES ('War Memorial Gym', '2 University Boulevard', 000153);
+                INSERT INTO IsLocated VALUES ('Gym 2', '1 West Mall', 000154);
+                INSERT INTO IsLocated VALUES ('Gym 2', '1 West Mall', 000155);
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
@@ -115,6 +127,7 @@ module.exports = function () {
                 INSERT INTO TeachesClass VALUES (000137, 12345678);
                 INSERT INTO TeachesClass VALUES (000133, 09289345);
                 INSERT INTO TeachesClass VALUES (000136, 18237481);
+                INSERT INTO TeachesClass VALUES (000134, 12345678);
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);

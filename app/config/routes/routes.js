@@ -11,6 +11,9 @@ module.exports = function(app) {
   // All Create Class routes
   require('./createclass-routes')(app);
 
+  // All Admin Routes
+  require('./admin-routes')(app);
+
   // Edit Class routes
   require('./editclass-routes')(app);
 

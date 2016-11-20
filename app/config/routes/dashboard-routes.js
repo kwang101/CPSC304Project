@@ -6,7 +6,7 @@ module.exports = function (app) {
   //var requiresLogin = require('./auth-routes').requiresLogin;
 
   app.get('/dashboard',
-    //requiresLogin, 
+    //requiresLogin,
     function (req, res) {
       const connection = require('../connection.js');
       // var programType = [];

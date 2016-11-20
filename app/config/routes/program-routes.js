@@ -6,7 +6,7 @@ module.exports = function (app) {
     // var hasAuthorization = require('./auth-routes').hasAuthorization;
 
     app.get('/programs/*',
-        // requiresLogin, hasAuthorization({ isUBC: 1, isAdmin: 1, isInstructor: 0}), 
+        // requiresLogin, hasAuthorization({ isUBC: 1, isAdmin: 1, isInstructor: 0}),
         function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
@@ -35,6 +35,7 @@ module.exports = function (app) {
                                                 connection.query('Select * FROM user Where userID = (SELECT userID FROM teachesclass Where programId = ?);',
                                                     [identification],
                                                     function (err, teacher, fields) {
+                                                        console.log(teacher);
                                                         if (err)
                                                             console.log('Error while performing Query.');
                                                         else

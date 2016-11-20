@@ -24,7 +24,44 @@ html
         div#main-navbar-collapse.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a(href="/") Home
+            |  <div class="container-fluid">
+            |    <ul class="nav navbar-nav">
+            |      <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+            |      <li class="dropdown">
+            |        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Selection<span class="caret"></span></a>
+            |        <ul class="dropdown-menu">
+            |          <li><a href="../lowerthan/20">Select With Price</a></li>
+            |          <li><a href="../laterthan/19:00">Select With Time</a></li>
+            |        </ul>
+            |      </li>
+            |      <li class="dropdown">
+            |        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Join<span class="caret"></span></a>
+            |        <ul class="dropdown-menu">
+            |          <li><a href="../laterthan/19:00">Join of Program and Occurs tables</a></li>
+            |        </ul>
+            |      </li>
+            |      <li class="dropdown">
+            |        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Division<span class="caret"></span></a>
+            |        <ul class="dropdown-menu">
+            |          <li><a href="../division">Users Who Are Enrolled In All Classes</a></li>
+            |        </ul>
+            |      </li>
+            |      <li class="dropdown">
+            |        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Aggregation<span class="caret"></span></a>
+            |        <ul class="dropdown-menu">
+            |          <li><a href="../expensive/most">Most Expensive Program</a></li>
+            |          <li><a href="../expensive/least">Least Expensive Program</a></li>
+            |        </ul>
+            |      </li>
+            |      <li class="dropdown">
+            |        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nested Aggregation<span class="caret"></span></a>
+            |        <ul class="dropdown-menu">
+            |          <li><a href="../avg/price">Average Price By Program Type</a></li>
+            |          <li><a href="../avg/capacity">Average Capacity By Program Type</a></li>
+            |        </ul>
+            |      </li>
+            |    </ul>
+            |  </div>
 
           ul.nav.navbar-nav.navbar-right
             if user
