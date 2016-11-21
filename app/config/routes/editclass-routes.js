@@ -85,7 +85,7 @@ module.exports = function(app) {
     renderClassEditView(programId, req, res);
   });
 
-  app.post('/editProgramPrice', function(req, res) {
+  app.post('/editClassPrice', function(req, res) {
         console.log(req.body);
         connection.query('UPDATE cpsc304_test.Program SET price=? where programId=?',
             [req.body.price, req.body.programId],

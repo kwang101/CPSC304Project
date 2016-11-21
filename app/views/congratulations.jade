@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title!= title
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/style.css', rel='stylesheet')
+
+script.
+  function myFunction() {
+    var transactionId = Math.floor(Math.random() * 9999) + 1234140000;
+    document.getElementById("demo").innerHTML = transactionId;
+    }
+
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      | <br>
+      h4.Title Congratulations on registering for #{programname}
+      | <br>
+      p Transaction ID: 
+      | <p id="demo"></p>
+      | <body onload='myFunction()'>
+      | <br>
+      | <br>
+      | <br>
+      P Please print this page for your own records.
+      
+
+              
+                          
+include ./layouts/footer.jade

@@ -4,6 +4,11 @@ style.
   table, th, td {
   border: 1px solid black;}
 
+script.
+  function myFunction(input) {
+    window.open("../congratulations/" + input, height=200,width=200);}
+
+
 div.container-fluid.page-wrap
   div.row
     div.col-md-10.col-md-offset-1
@@ -61,7 +66,7 @@ div.container-fluid.page-wrap
                   td
                     a(href="../programs/#{row.programId}")= row.programId
                   td
-                    |<form method="post"><button type="submit" name="register" value="#{row.programId}">Register</button></form>
+                    |<form method="post"><button type="submit" name="register" value="#{row.programId}" onclick="myFunction(#{row.programId})">Register</button></form>
           
           | <br>
           | <br>
