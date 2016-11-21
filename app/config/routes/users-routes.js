@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function (app) {
     /**
      * Display Home Page
     **/
@@ -7,30 +7,37 @@ module.exports = function(app) {
 
     app.get('/users/*',
         // requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), 
-        function(req, res) {
+        function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
             connection.query('SELECT * FROM program WHERE programId IN (SELECT programId FROM registers WHERE userId = ? )',
                 [identification],
-                function(err, registered, fields) {
+                function (err, registered, fields) {
                     if (err)
                         console.log('Error while performing Query.');
                     else
                         connection.query('SELECT * FROM program WHERE programId NOT IN (SELECT programId FROM registers WHERE userId = ? )',
                             [identification],
-                            function(err, notRegistered, fields) {
+                            function (err, notRegistered, fields) {
                                 if (err)
                                     console.log('Error while performing Query.');
                                 else
-                                    //console.log(identification);
-                                    res.render('users', {
-                                        title: identification,
-                                        message: identification,
-                                        userName: (req.user) ? req.user.username : undefined,
-                                        flashMessage: req.flash('flashMessage'),
-                                        registered: registered,
-                                        notRegistered: notRegistered
-                                    });
+                                    connection.query('SELECT * FROM user WHERE userId IN (SELECT userId FROM user WHERE userId = ?);',
+                                        [identification],
+                                        function (err, userexists, fields) {
+                                            if (userexists.length == 0) 
+                                                res.send("This user does not exist!");
+                                            else
+                                                //console.log(identification);
+                                                res.render('users', {
+                                                    title: identification,
+                                                    message: identification,
+                                                    userName: (req.user) ? req.user.username : undefined,
+                                                    flashMessage: req.flash('flashMessage'),
+                                                    registered: registered,
+                                                    notRegistered: notRegistered
+                                                });
+                                        });
                             });
 
                 });
@@ -40,7 +47,7 @@ module.exports = function(app) {
     /*POST to user pages - register/drop*/
     app.post('/users/*',
         // requiresLogin, 
-        function(req, res) {
+        function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
             var programId = req.body.register || req.body.drop;
@@ -60,7 +67,7 @@ module.exports = function(app) {
                 console.log(identification);
                 connection.query('DELETE FROM registers WHERE programId = ? AND userId = ?',
                     [programId, identification],
-                    function(err, result) {
+                    function (err, result) {
                         if (err)
                             console.log('Error while Dropping.');
                         else
@@ -71,7 +78,7 @@ module.exports = function(app) {
             } else {
                 connection.query('SELECT * FROM user WHERE userId = ?',
                     [identification],
-                    function(err, user, fields) {
+                    function (err, user, fields) {
                         if (err)
                             console.log('Error while performing Query.');
                         else
@@ -83,7 +90,7 @@ module.exports = function(app) {
                         console.log(isUBC);
                         connection.query('SELECT * FROM program WHERE programId = ?',
                             [programId],
-                            function(err, program, fields) {
+                            function (err, program, fields) {
                                 if (err)
                                     console.log('Error while performing Query.');
                                 else
@@ -92,7 +99,7 @@ module.exports = function(app) {
                                 console.log(fees);
                                 connection.query('INSERT INTO Registers VALUES (?, ?, ?, ?, ?)',
                                     [transactionId, isPaid, fees * isUBC, programId, userId],
-                                    function(err, result) {
+                                    function (err, result) {
                                         if (err)
                                             console.log('Error while Registering.');
                                         else

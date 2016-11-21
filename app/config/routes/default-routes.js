@@ -11,4 +11,12 @@ module.exports = function(app) {
       flashMessage: req.flash('flashMessage')
     });
   });
+
+  app.post('/',
+        function (req, res) {
+            var input = req.body.number;
+            console.log(input);
+            res.redirect('../users/' + input);
+        }
+    );
 }
