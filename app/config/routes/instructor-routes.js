@@ -27,7 +27,7 @@ module.exports = function(app) {
                                     console.log('Error while performing Query.');
                                 else
                                     //console.log(identification);
-                                    res.render('users', {
+                                    res.render('instructor', {
                                         title: identification,
                                         message: identification,
                                         userName: (req.user) ? req.user.username : undefined,
@@ -69,7 +69,6 @@ module.exports = function(app) {
                             res.redirect(req.get('referer'));
                     }
                 );
-                // this is for adding classes
             }
         });
 }

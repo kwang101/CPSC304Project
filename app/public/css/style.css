@@ -3,7 +3,7 @@
 }
 html, body {
   height: 100%;
-  background-image: url(/views/background.jpg);
+  background-image: url("../image/background.jpg");
 }
 .page-wrap {
   min-height: 100%;

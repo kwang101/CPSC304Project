@@ -26,7 +26,7 @@ module.exports = function () {
                 INSERT INTO Program VALUES ('class', 2, 20.00, 'Yoga', 000132);
                 INSERT INTO Program VALUES ('class', 2, 50.00, 'Twerking', 000134);
                 INSERT INTO Program VALUES ('class', 1, 15.00, 'Pilates', 000135);
-                INSERT INTO Program VALUES ('class', 2, 20.00, 'T-Bagging', 000137);
+                INSERT INTO Program VALUES ('class', 2, 20.00, 'BootCamp', 000137);
                 INSERT INTO Program VALUES ('class', 1, 15.00, 'Meme-ing', 000133);
                 INSERT INTO Program VALUES ('class', 1, 15.00, 'Wrestling', 000136);
                 INSERT INTO Program VALUES ('dropin', 1, 10.00, 'Basketball Drop-in', 000140);
@@ -144,7 +144,6 @@ module.exports = function () {
                 INSERT INTO Registers VALUES (00001234142093, true, 15.00, 000135, 12345678);
                 INSERT INTO Registers VALUES (00001234142093, true, 15.00, 000136, 12345678);
                 INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000137, 12345678);
-                INSERT INTO Registers VALUES (00001234141321, true, 15.00, 000135, 12341133);
                 INSERT INTO Registers VALUES (00001234149812, true, 15.00, 000135, 23452344);
                 INSERT INTO Registers VALUES (00001234145893, true, 15.00, 000135, 09289345);
                 INSERT INTO Registers VALUES (00001234148437, true, 15.00, 000135, 18237481);
