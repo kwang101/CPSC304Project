@@ -55,8 +55,8 @@ module.exports = function(app) {
    * Display Instructor Console
   **/
 
-  app.get('/admin', function(req, res) {
-    renderAdminDisplayInformation(req, res);
+  app.get('/instructor', function(req, res) {
+    renderInstructorDisplayInformation(req, res);
   });
 
   /**
