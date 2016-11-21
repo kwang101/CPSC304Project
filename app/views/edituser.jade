@@ -11,7 +11,7 @@ div.container-fluid.page-wrap
       div.row
         div.col-md-6.col-md-offset-3.text-center
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Name
@@ -26,7 +26,7 @@ div.container-fluid.page-wrap
                   td <button type="submit">Change</button>
                   </form>
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Email
@@ -41,7 +41,7 @@ div.container-fluid.page-wrap
                   td <button type="submit">Change</button>
                   </form>
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Is Admin
@@ -56,7 +56,7 @@ div.container-fluid.page-wrap
                   td <button name="programId" type="submit">Change</button>
                   </form>
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Is Instructor
@@ -71,7 +71,7 @@ div.container-fluid.page-wrap
                   td <button name="programId" type="submit">Change</button>
                   </form>
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Is UBC
@@ -86,7 +86,7 @@ div.container-fluid.page-wrap
                   td <button name="programId" type="submit">Change</button>
                   </form>
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Credit Card
@@ -101,7 +101,7 @@ div.container-fluid.page-wrap
                   td <button name="programId" type="submit">Change</button>
                   </form>
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Expiry Date
@@ -115,6 +115,11 @@ div.container-fluid.page-wrap
                   td <input type="datetime-local" name="expiryDate"><input type="hidden" name="userId" value="#{row.userId}">
                   td <button name="programId" type="submit">Change</button>
                   </form>
+          | <br>
+          | <br>
+          | <a href="../admin">Return To Admin Console</a>
+          | <br>
+          | <br>
           | <br>
 
 include ./layouts/footer.jade
