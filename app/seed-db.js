@@ -140,7 +140,7 @@ module.exports = function () {
                 `
                 INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000132, 12345678);
                 INSERT INTO Registers VALUES (00001234142093, true, 15.00, 000133, 12345678);
-                INSERT INTO Registers VALUES (00009876546789, true, 50.00, 000134, 12345678);
+                INSERT INTO Registers VALUES (00001234146789, true, 50.00, 000134, 12345678);
                 INSERT INTO Registers VALUES (00001234142093, true, 15.00, 000135, 12345678);
                 INSERT INTO Registers VALUES (00001234142093, true, 15.00, 000136, 12345678);
                 INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000137, 12345678);
