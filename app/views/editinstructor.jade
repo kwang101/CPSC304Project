@@ -1,0 +1,46 @@
+include ./layouts/header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center Edit Instructor
+      div.row
+        div.col-md-6.col-md-offset-3.text-center
+          | <br>
+          table
+            thead
+              tr
+                th Name
+            tbody
+              each row, i in instructor
+                tr
+                  td
+                    =row.name
+          | <br>
+          table
+            thead
+              tr
+                th Taught Classes
+            tbody
+              each row, i in classes
+                tr
+                  td
+                    =row.name
+                  td  <form method="post" action="/dropClass"><input type="hidden" name="userId" value=#{instructor[0].userId}><button type="submit" name="programId" value="#{row.programId}">Drop</button></form>
+              tr
+                <form method="post" action="/addClassToInstructor">
+                td
+                  select(type="text" name="class")
+                    each program, i in availableClasses
+                      option #{program.name}-#{program.programId}
+                  <input type="hidden" name="userId" value=#{instructor[0].userId}>
+                td <button type="submit">Add Class to teach</button>
+                </form>
+
+          | <br>
+
+include ./layouts/footer.jade
