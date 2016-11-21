@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
 const salt = '$2a$10$wENMOiXaNvkXN9BmCbh4ZO';
 module.exports = function(app) {
 
-    var requiresLogin = require('./auth-routes').requiresLogin;
-    var hasAuthorization = require('./auth-routes').hasAuthorization;
+var requiresLogin = require('./auth-routes').requiresLogin;
+var hasAuthorization = require('./auth-routes').hasAuthorization;
   //keep a list of information so we don't have to fetch it again
   function renderAdminDisplayInformation(req, res) {
     connection.query('SELECT * from cpsc304_test.Program', function(err, programs, fields) {
@@ -43,20 +43,14 @@ module.exports = function(app) {
         });
     });
   }
-  /**
-   * Receive Signin Form Data
-  **/
-  app.post('/signin',
-    passport.authenticate('local-login', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/');
-  });
 
   /**
    * Display Admin Console
   **/
 
-  app.get('/admin', function(req, res) {
+  app.get('/admin',
+  requiresLogin, hasAuthorization({isAdmin: 1}),
+    function(req, res) {
     renderAdminDisplayInformation(req, res);
   });
 

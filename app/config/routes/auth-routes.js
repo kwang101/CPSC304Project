@@ -1,6 +1,14 @@
 const passport = require('passport');
 
 module.exports.routes = function(app) {
+
+    passport.serializeUser(function(user, done) {
+      done(null, user);
+    });
+
+    passport.deserializeUser(function(user, done) {
+      done(null, user);
+    });
     /**
      * Logout user
      **/
@@ -34,16 +42,20 @@ module.exports.routes = function(app) {
    * Receive Signup Form Data
   **/
   app.post('/signup',
-    passport.authenticate('local-signup', { failureRedirect: '/signup' }),
+    passport.authenticate('local-signup', { failureRedirect: '/signup' },
     function(req, res) {
-      res.redirect('/');
-  });
+      console.log("here");
+      console.log(req);
+      console.log(res);
+      res.redirect('/dashboard');
+    })
+  );
 };
 
 /**
  * Require login routing middleware
  */
-exports.requiresLogin = function(req, res, next) {
+requiresLogin = function(req, res, next) {
   if (!req.isAuthenticated()) {
     return res.status(401).send({
       message: 'User is not logged in'
@@ -52,7 +64,7 @@ exports.requiresLogin = function(req, res, next) {
     return next();
   }
 };
-
+exports.requiresLogin = requiresLogin;
 /**
  * User authorizations routing middleware
  */
@@ -60,14 +72,27 @@ exports.hasAuthorization = function(roles) {
     var that = this;
 
     return function(req, res, next) {
-        that.requiresLogin(req, res, function() {
-            if (roles.isAdmin === req.user.isAdmin && roles.isInstructor === req.user.isInstructor && roles.isUBC === req.user.isUBC) {
-                return next();
-            } else {
-                return res.status(403).send({
-                    message: 'User is not authorized'
-                });
-            }
+        requiresLogin(req, res, function() {
+
+          if (roles.isAdmin && roles.isAdmin !== req.user.isAdmin) {
+              return res.status(403).send({
+                  message: 'User is not authorized'
+              });
+          }
+
+          if (roles.isInstructor && roles.isInstructor !== req.user.isInstructor) {
+              return res.status(403).send({
+                  message: 'User is not authorized'
+              });
+          }
+
+          if (roles.isUBC && roles.isUBC !== req.user.isUBC) {
+              return res.status(403).send({
+                  message: 'User is not authorized'
+              });
+          }
+
+          return next();
         });
     };
 };
