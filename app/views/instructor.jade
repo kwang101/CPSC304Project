@@ -1,5 +1,5 @@
 include ./layouts/instr_header.jade
-if ()
+
 style.
   table, th, td {
   border: 1px solid black;}
@@ -13,25 +13,32 @@ div.container-fluid.page-wrap
           p Here is where instructors can view exisitng, add, delete, and update programs.
           | <br>
           p Programs I'm Teaching
-          table
-          	thread
-              tr
-              	th Name
-                th Term
-                th Program Id
-                th Price
-            tbody
-              each row, i in registered
+          table.table-striped.table-bordered
+            table
+            thread
                 tr
-                  td
-                    =row.name
-                  td
-                    =row.term
-                  td
-                    a(href="../programs/#{row.programId}")= row.programId
-                  td
-                    =row.price
-                  td
-                    |<form method="post"><button type="submit" name="drop" value=row.programId>Cancel Class</button></form>
+                th Name &nbsp
+                  th Program Type &nbsp
+                  th Term &nbsp
+                  th Program Id &nbsp
+                  th Price
+              tbody
+                each row, i in registered
+                  tr
+                    td
+                      =row.name
+                    td
+                      =row.programType
+                    td
+                      =row.term
+                    td
+                      a(href="../programs/#{row.programId}")= row.programId
+                    td
+                      =row.price
+                    td
+                      |<form method="post"><button type="submit" name="drop" value=row.programId>Cancel Class</button></form>
+
+          | <br>
+          | <br>
               
 include ./layouts/footer.jade
