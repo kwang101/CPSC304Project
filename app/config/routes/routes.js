@@ -14,6 +14,9 @@ module.exports = function(app) {
   // All Admin Routes
   require('./admin-routes')(app);
 
+  // All Edit Program Routes
+  require('./editprogram-routes')(app);
+
   // Edit Class routes
   require('./editclass-routes')(app);
 
