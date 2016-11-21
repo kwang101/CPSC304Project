@@ -8,7 +8,7 @@ module.exports = function (app) {
         function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT * FROM program WHERE price <= ?',
+            connection.query('SELECT * FROM program WHERE price <= ? ORDER BY price DESC',
                 [identification],
                 function (err, programs, fields) {
                     if (err)
@@ -40,7 +40,7 @@ module.exports = function (app) {
         function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT programType, term, name, startTime, endTime, dayOfWeek, program.programId FROM program JOIN occurs ON occurs.programId = program.programId AND occurs.startTime >= ?;',
+            connection.query('SELECT programType, term, name, startTime, endTime, dayOfWeek, program.programId FROM program JOIN occurs ON occurs.programId = program.programId AND occurs.startTime >= ? ORDER BY startTime;',
                 [identification],
                 function (err, programs, fields) {
                     if (err)

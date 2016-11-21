@@ -26,7 +26,8 @@ module.exports = function (app) {
                                         [identification],
                                         function (err, userexists, fields) {
                                             if (userexists.length == 0) 
-                                                res.send("This user does not exist!");
+                                                res.render('error',{
+                                                    message: 'This User Does Not Exist'});
                                             else
                                                 //console.log(identification);
                                                 res.render('users', {
