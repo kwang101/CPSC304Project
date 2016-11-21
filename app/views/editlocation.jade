@@ -11,7 +11,7 @@ div.container-fluid.page-wrap
       div.row
         div.col-md-6.col-md-offset-3.text-center
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Location Name
@@ -26,7 +26,7 @@ div.container-fluid.page-wrap
                   td <button name="location" type="submit">Change</button>
                   </form>
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Location Capacity
@@ -41,7 +41,7 @@ div.container-fluid.page-wrap
                   td <button name="location" type="submit">Change</button>
                   </form>
           | <br>
-          table
+          table.table-striped.table-bordered
             thead
               tr
                 th Location Address
@@ -55,6 +55,11 @@ div.container-fluid.page-wrap
                   td <input type="text" name="address"><input type="hidden" name="oldName" value="#{row.name}"><input type="hidden" name="oldAddress" value="#{row.address}">
                   td <button name="programId" type="submit">Change</button>
                   </form>
+          | <br>
+          | <br>
+          | <a href="../admin">Return To Admin Console</a>
+          | <br>
+          | <br>
           | <br>
 
 include ./layouts/footer.jade

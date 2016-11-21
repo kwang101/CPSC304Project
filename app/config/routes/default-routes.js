@@ -46,6 +46,18 @@ module.exports = function (app) {
             else
               res.redirect('../admin');
           });
+      } else if (req.body.instructor != undefined) {
+        connection.query('SELECT * FROM user WHERE userId IN (SELECT userId FROM user WHERE userId = ? AND isInstructor = 1)',
+          [input],
+          function (err, instructorexists, fields) {
+            console.log(instructorexists);
+            if (instructorexists.length == 0)
+              res.render('error', {
+                message: 'Nice try buddy. You ain\'t no Instructor!'
+              });
+            else
+              res.redirect('../instructor/' + input);
+          });
       }
     })
 }

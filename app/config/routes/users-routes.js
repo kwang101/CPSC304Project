@@ -53,7 +53,7 @@ module.exports = function (app) {
             var identification = req.params['0'];
             var programId = req.body.register || req.body.drop;
             var transactionId = Math.floor(Math.random() * 9999) + 1234140000;
-            var isPaid = 0;
+            var isPaid = 1;
             var fees = 0;
             var isUBC = 1;
             console.log(fees);
