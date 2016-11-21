@@ -20,6 +20,7 @@ div.container-fluid.page-wrap
                 tr
                   td
                     =row.name
+                tr
                   <form method="post" action="/editProgramName">
                   td <input type="text" name="name">
                   td <button name="programId" type="submit" value=#{programId}>Change</button>
@@ -34,6 +35,7 @@ div.container-fluid.page-wrap
                 tr
                   td
                     =row.price
+                tr
                   <form method="post" action="/editProgramPrice">
                   td <input type="text" name="price">
                   td <button name="programId" type="submit" value=#{programId}>Change</button>
@@ -52,13 +54,14 @@ div.container-fluid.page-wrap
                     =row.name
                   td
                     =row.address
-                  <form method="post" action="/editProgramLocation">
-                  td
-                    select(type="text" name="location")
-                      each loc, i in availableLocations
-                        option #{loc.name}-#{loc.address}
-                  td <button name="programId" type="submit" value=#{programId}>Change</button>
-                  </form>
+              tr
+                <form method="post" action="/editProgramLocation">
+                td
+                  select(type="text" name="location")
+                    each loc, i in availableLocations
+                      option #{loc.name}-#{loc.address}
+                td <button name="programId" type="submit" value=#{programId}>Change</button>
+                </form>
           | <br>
           table
             thead
@@ -106,6 +109,30 @@ div.container-fluid.page-wrap
                     <input type="hidden" name="programId" value=#{programId}>
                   td <button type="submit">Change</button>
                   </form>
+          | <br>
+          table
+            thead
+              tr
+                th Start Time
+                th End Time
+                th Day of Week
+            tbody
+              each row, i in occurs
+                tr
+                  td
+                    =row.startTime
+                  td
+                    =row.endTime
+                  td
+                    = row.dayOfWeek
+                  td  <form method="post" action="/dropDate"><input type="hidden" name="startTime" value=#{row.startTime}><input type="hidden" name="endTime" value=#{row.endTime}><input type="hidden" name="dayOfWeek" value=#{row.dayOfWeek}><button type="submit" name="programId" value="#{programId}">Drop</button></form>
+              tr
+                <form method="post" action="/addNewOccurs">
+                td  <input type="time" name="startTime">
+                td  <input type="time" name="endTime">
+                td  <input type="number" min="1" max="7" name="dayOfWeek">
+                td <button type="submit" name="programId" value=#{programId}>Add Date</button>
+                </form>
           | <br>
 
 include ./layouts/footer.jade

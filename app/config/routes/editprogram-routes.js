@@ -45,21 +45,30 @@ module.exports = function(app) {
                                                                                     if (err) {
                                                                                         console.log(err);
                                                                                     } else {
-                                                                                        res.render('editprogram', {
-                                                                                            title: 'Edit Program',
-                                                                                            message: 'Edit Program',
-                                                                                            userName: (req.user) ? req.user.username : undefined,
-                                                                                            flashMessage: req.flash('flashMessage'),
-                                                                                            program : program,
-                                                                                            locations : locations,
-                                                                                            users : users,
-                                                                                            instructor : instructor,
-                                                                                            availableLocations : availableLocations,
-                                                                                            availableInstructors : availableInstructors,
-                                                                                            availableUsers : availableUsers,
-                                                                                            programId : programId,
-                                                                                            price : program[0].price
-                                                                                        });
+                                                                                        connection.query('select * from cpsc304_test.Occurs where programId=?',
+                                                                                            [programId],
+                                                                                            function(err, occurs) {
+                                                                                                if (err) {
+                                                                                                    console.log(err);
+                                                                                                } else {
+                                                                                                    res.render('editprogram', {
+                                                                                                        title: 'Edit Program',
+                                                                                                        message: 'Edit Program',
+                                                                                                        userName: (req.user) ? req.user.username : undefined,
+                                                                                                        flashMessage: req.flash('flashMessage'),
+                                                                                                        program : program,
+                                                                                                        locations : locations,
+                                                                                                        users : users,
+                                                                                                        instructor : instructor,
+                                                                                                        availableLocations : availableLocations,
+                                                                                                        availableInstructors : availableInstructors,
+                                                                                                        availableUsers : availableUsers,
+                                                                                                        programId : programId,
+                                                                                                        price : program[0].price,
+                                                                                                        occurs : occurs
+                                                                                                    });
+                                                                                                }
+                                                                                            });
                                                                                     }
                                                                                 });
                                                                         }
@@ -139,14 +148,18 @@ module.exports = function(app) {
         var location = req.body.location.split("-");
         var name = location[0];
         var address = location[1];
-        connection.query('UPDATE cpsc304_test.IsLocated SET name=?, address=? where programId=?',
-            [name, address, req.body.programId],
+        connection.query('DELETE FROM cpsc304_test.IsLocated where programId=?',
+            [req.body.programId],
             function(err, response) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    renderProgramEditView(req.body.programId, req, res);
-                }
+                connection.query('INSERT INTO cpsc304_test.IsLocated VALUES(?, ?, ?)',
+                    [name, address, req.body.programId],
+                    function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            renderProgramEditView(req.body.programId, req, res);
+                        }
+                    });
             });
     });
 
@@ -164,6 +177,42 @@ module.exports = function(app) {
                     console.log(err);
                 } else {
                     renderProgramEditView(req.body.programId, req, res);
+                }
+            });
+    });
+
+    app.post('/addNewOccurs', function(req, res) {
+        console.log(req.body);
+        var params = req.body;
+        connection.query('INSERT IGNORE INTO cpsc304_test.Date VALUES(?, ?, ?)',
+            [params.startTime, params.endTime, params.dayOfWeek],
+            function(err, result) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    connection.query('INSERT IGNORE INTO cpsc304_test.Occurs VALUES(?, ?, ?, ?)',
+                    [params.startTime, params.endTime, params.dayOfWeek, params.programId],
+                    function(err, result) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            renderProgramEditView(params.programId, req, res);
+                        }
+                    });
+                }
+            });
+    });
+
+    app.post('/dropDate', function(req, res) {
+        console.log(req.body);
+        var params = req.body;
+        connection.query('DELETE from cpsc304_test.Occurs where startTime=? and endTime=? and dayOfWeek=? and programId=?',
+            [params.startTime, params.endTime, params.dayOfWeek, params.programId],
+            function(err, result) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    renderProgramEditView(params.programId, req, res);
                 }
             });
     });

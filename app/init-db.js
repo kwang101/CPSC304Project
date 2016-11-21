@@ -5,25 +5,10 @@ async.waterfall([
     function (callback) {
         connection.query(
             `CREATE TABLE Date (
-                startTime TIMESTAMP DEFAULT '1970-01-01 00:00:01',
-                endTime TIMESTAMP DEFAULT '1970-01-01 00:00:01',
-                dayOfWeek REAL,
-                PRIMARY KEY(startTime, endTime, dayOfWeek)
-            )`,
-            function (err, result) {
-                if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
-                else callback(null);
-            }
-        );
-    },
-    function (callback) {
-        connection.query(
-            `CREATE TABLE Occurs (
                 startTime TIME DEFAULT '00:00:01',
                 endTime TIME DEFAULT '00:00:01',
                 dayOfWeek REAL,
-                programId INTEGER,
-                PRIMARY KEY(startTime, endTime, dayOfWeek, programId)
+                PRIMARY KEY(startTime, endTime, dayOfWeek)
             )`,
             function (err, result) {
                 if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
@@ -40,6 +25,27 @@ async.waterfall([
                 name VARCHAR(100),
                 programId INTEGER,
                 PRIMARY KEY(programId)
+            )`,
+            function (err, result) {
+                if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
+                else callback(null);
+            }
+        );
+    },
+    function (callback) {
+        connection.query(
+            `CREATE TABLE Occurs (
+                startTime TIME DEFAULT '00:00:01',
+                endTime TIME DEFAULT '00:00:01',
+                dayOfWeek REAL,
+                programId INTEGER,
+                PRIMARY KEY(startTime, endTime, dayOfWeek, programId),
+                FOREIGN KEY (startTime, endTime, dayOfWeek) REFERENCES Date(startTime, endTime, dayOfWeek)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
+                FOREIGN KEY (programId) REFERENCES Program(programId)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
             )`,
             function (err, result) {
                 if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
@@ -88,8 +94,12 @@ async.waterfall([
                 address VARCHAR(100),
                 programId INTEGER,
                 PRIMARY KEY(name, address, programId),
-                FOREIGN KEY(name, address) REFERENCES Location(name, address),
+                FOREIGN KEY(name, address) REFERENCES Location(name, address)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
                 FOREIGN KEY (programId) REFERENCES Program(programId)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
             )`,
             function (err, result) {
                 if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
@@ -103,8 +113,13 @@ async.waterfall([
                 programId INTEGER,
                 userId INTEGER,
                 PRIMARY KEY(programId, userId),
-                FOREIGN KEY (programId) REFERENCES Program (programId),
+                FOREIGN KEY (programId) REFERENCES Program (programId)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
                 FOREIGN KEY (userId) REFERENCES User (userId)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
+
             )`,
             function (err, result) {
                 if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
@@ -120,8 +135,12 @@ async.waterfall([
                 fees FLOAT,
                 programId INTEGER,
                 userId INTEGER,
-                FOREIGN KEY (programId) REFERENCES Program (programId),
+                FOREIGN KEY (programId) REFERENCES Program (programId)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
                 FOREIGN KEY (userId) REFERENCES User (userId)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
             )`,
             function (err, result) {
                 if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
@@ -144,7 +163,7 @@ async.waterfall([
     function (callback) {
         connection.query(
             `CREATE VIEW programcapacity AS
-            SELECT programType, p.programId, capacity 
+            SELECT programType, p.programId, capacity
             FROM program p, islocated i, location l
             WHERE p.programId = i.programId AND i.name = l.name
             `,

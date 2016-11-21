@@ -1,0 +1,60 @@
+include ./layouts/header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center Edit Location
+      div.row
+        div.col-md-6.col-md-offset-3.text-center
+          | <br>
+          table
+            thead
+              tr
+                th Location Name
+            tbody
+              each row, i in location
+                tr
+                  td
+                    =row.name
+                tr
+                  <form method="post" action="/editLocation">
+                  td <input type="text" name="name"><input type="hidden" name="oldName" value="#{row.name}"><input type="hidden" name="oldAddress" value="#{row.address}">
+                  td <button name="location" type="submit">Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Location Capacity
+            tbody
+              each row, i in location
+                tr
+                  td
+                    =row.capacity
+                tr
+                  <form method="post" action="/editLocation">
+                  td <input type="number" name="capacity"><input type="hidden" name="oldName" value="#{row.name}"><input type="hidden" name="oldAddress" value="#{row.address}">
+                  td <button name="location" type="submit">Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Location Address
+            tbody
+              each row, i in location
+                tr
+                  td
+                    =row.address
+                tr
+                  <form method="post" action="/editLocation">
+                  td <input type="text" name="address"><input type="hidden" name="oldName" value="#{row.name}"><input type="hidden" name="oldAddress" value="#{row.address}">
+                  td <button name="programId" type="submit">Change</button>
+                  </form>
+          | <br>
+
+include ./layouts/footer.jade
