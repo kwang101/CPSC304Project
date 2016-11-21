@@ -3,7 +3,6 @@
 }
 html, body {
   height: 100%;
-  background-image: url("../image/background.jpg");
 }
 .page-wrap {
   min-height: 100%;
@@ -25,6 +24,9 @@ footer {
 }
 .navbar {
   border-radius: 0px;
+}
+.backgroundimg{
+  background-image: url("../images/background.jpg");
 }
 .signin-form {
   width: 300px;
