@@ -88,7 +88,7 @@ async.waterfall([
                 address VARCHAR(100),
                 programId INTEGER,
                 PRIMARY KEY(name, address, programId),
-                FOREIGN KEY(name, address) REFERENCES Location(name, address),
+                FOREIGN KEY(name, address) REFERENCES Location(name, address) ON DELETE CASCADE,
                 FOREIGN KEY (programId) REFERENCES Program(programId)
             )`,
             function (err, result) {
@@ -103,8 +103,8 @@ async.waterfall([
                 programId INTEGER,
                 userId INTEGER,
                 PRIMARY KEY(programId, userId),
-                FOREIGN KEY (programId) REFERENCES Program (programId),
-                FOREIGN KEY (userId) REFERENCES User (userId)
+                FOREIGN KEY (programId) REFERENCES Program (programId) ON DELETE CASCADE,
+                FOREIGN KEY (userId) REFERENCES User (userId) ON DELETE CASCADE
             )`,
             function (err, result) {
                 if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
