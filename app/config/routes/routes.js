@@ -36,6 +36,6 @@ module.exports = function(app) {
 
   require('./edituser-routes')(app);
 
-  //require('./editinstructor-routes')(app);
+  require('./editinstructor-routes')(app);
 
 }

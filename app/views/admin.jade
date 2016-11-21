@@ -37,14 +37,14 @@ div.container-fluid.page-wrap
             <form method="post" action="/adminAddProgram">
             - var types = ["dropin", "intramural", "class"]
             tr
-              td <input type="text" name="name">
+              td <input type="text" name="name" pattern="[a-zA-Z0-9]" placeholder="a-Z, 0-9">
               td
                 select(type="text" name="programType")
                  each type, i in types
                   option #{type}
-              td <input type="text" name="programId">
-              td <input type="text" name="price">
-              td <input type="text" name="term">
+              td <input type="number" name="programId" min="0" max="999" placeholder="999" >
+              td <input type="number" name="price" min="0" placeholder="in dollars">
+              td <input type="number" name="term" min="1" max="2" placeholder="1">
               td <input type="submit" value="Add Program">
             </form>
 
@@ -69,9 +69,9 @@ div.container-fluid.page-wrap
                 td <form method="get" action="/editlocation/#{row.name}-#{row.address}"><button type="submit">Edit</button></form>
             <form method="post" action="/adminAddLocation">
             tr
-              td <input type="text" name="name">
-              td <input type="number" name="capacity">
-              td <input type="text" name="address">
+              td <input type="text" name="name" pattern="[a-zA-Z0-9]" placeholder="a-Z, 0-9">
+              td <input type="number" name="capacity" min="0">
+              td <input type="text" name="address" pattern="[a-zA-Z0-9]" placeholder="a-Z, 0-9">
               td <input type="submit" value="Add Location">
             </form>
       div.All-users
@@ -112,13 +112,13 @@ div.container-fluid.page-wrap
                 td <form method="get" action="/edituser/#{row.userId}"><button type="submit">Edit</button></form>
             <form method="post" action="/adminAddUser">
             tr
-              td <input type="text" name="name">
+              td <input type="text" name="name" pattern="[a-zA-Z0-9]" placeholder="a-Z, 0-9">
               td <input type="email" name="email">
-              td <input type="number" name="userId">
+              td <input type="number" name="userId" min="0">
               td <input type="number" name="isAdmin" min="0" max="1">
               td <input type="number" name="isInstructor" min="0" max="1">
               td <input type="number" name="isUBC" min="0" max="1">
-              td <input type="number" name="creditCard">
+              td <input type="number" name="creditCard" min="0">
               td <input type="date" name="expiryDate" step="1">
               td <input type="password" name="password">
               td <input type="submit" value="Add User">

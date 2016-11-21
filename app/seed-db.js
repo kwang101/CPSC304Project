@@ -39,7 +39,7 @@ module.exports = function () {
                 INSERT INTO Program VALUES ('class', 2, 50.00, 'Twerking', 000134);
                 INSERT INTO Program VALUES ('class', 1, 15.00, 'Pilates', 000135);
                 INSERT INTO Program VALUES ('class', 2, 20.00, 'BootCamp', 000137);
-                INSERT INTO Program VALUES ('class', 1, 15.00, 'Meme-ing', 000133);
+                INSERT INTO Program VALUES ('class', 1, 15.00, 'Memeing', 000133);
                 INSERT INTO Program VALUES ('class', 1, 15.00, 'Wrestling', 000136);
                 INSERT INTO Program VALUES ('dropin', 1, 10.00, 'Basketball Drop-in', 000140);
                 INSERT INTO Program VALUES ('dropin', 1, 10.00, 'Volleyball Drop-in', 000141);
