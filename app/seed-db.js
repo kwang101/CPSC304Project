@@ -8,11 +8,23 @@ module.exports = function () {
         function (callback) {
             connection.query(
                 `
-                INSERT INTO Date VALUES ('2016-01-09 11:00:00', '2016-01-09 12:00:00', 3);
-                INSERT INTO Date VALUES('2016-01-10 11:00:00', '2016-01-10 12:00:00', 4);
-                INSERT INTO Date VALUES('2016-01-11 11:00:00', '2016-01-11 12:00:00', 5);
-                INSERT INTO Date VALUES('2016-01-12 11:00:00', '2016-01-12 12:00:00', 6);
-                INSERT INTO Date VALUES('2016-01-13 11:00:00', '2016-01-13 12:00:00', 7);
+                INSERT INTO Date VALUES ('11:00:00', '12:00:00', 3);
+                INSERT INTO Date VALUES ('11:00:00', '12:00:00', 4);
+                INSERT INTO Date VALUES ('11:00:00', '12:00:00', 5);
+                INSERT INTO Date VALUES ('11:00:00', '12:00:00', 6);
+                INSERT INTO Date VALUES ('11:00:00', '12:00:00', 7);
+                INSERT INTO Date VALUES ('19:00:00', '20:00:00', 1);
+                INSERT INTO Date VALUES ('20:00:00', '21:00:00', 1);
+                INSERT INTO Date VALUES ('23:00:00', '24:00:00', 5);
+                INSERT INTO Date VALUES ('19:00:00', '20:00:00', 2);
+                INSERT INTO Date VALUES ('20:00:00', '21:00:00', 2);
+                INSERT INTO Date VALUES ('19:00:00', '20:00:00', 3);
+                INSERT INTO Date VALUES ('20:00:00', '21:00:00', 3);
+                INSERT INTO Date VALUES ('19:00:00', '20:00:00', 4);
+                INSERT INTO Date VALUES ('20:00:00', '21:00:00', 4);
+                INSERT INTO Date VALUES ('21:00:00', '22:00:00', 4);
+                INSERT INTO Date VALUES ('09:00:00', '10:00:00', 6);
+                INSERT INTO Date VALUES ('10:00:00', '22:00:00', 6);
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);

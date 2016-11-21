@@ -1,0 +1,120 @@
+include ./layouts/header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center Edit User
+      div.row
+        div.col-md-6.col-md-offset-3.text-center
+          | <br>
+          table
+            thead
+              tr
+                th Name
+            tbody
+              each row, i in user
+                tr
+                  td
+                    =row.name
+                tr
+                  <form method="post" action="/editUser">
+                  td <input type="text" name="name"><input type="hidden" name="userId" value="#{row.userId}">
+                  td <button type="submit">Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Email
+            tbody
+              each row, i in user
+                tr
+                  td
+                    =row.email
+                tr
+                  <form method="post" action="/editUser">
+                  td <input type="email" name="email"><input type="hidden" name="userId" value="#{row.userId}">
+                  td <button type="submit">Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Is Admin
+            tbody
+              each row, i in user
+                tr
+                  td
+                    =row.isAdmin
+                tr
+                  <form method="post" action="/editUser">
+                  td <input type="number" name="isAdmin" min="0" max="1"><input type="hidden" name="userId" value="#{row.userId}">
+                  td <button name="programId" type="submit">Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Is Instructor
+            tbody
+              each row, i in user
+                tr
+                  td
+                    =row.isInstructor
+                tr
+                  <form method="post" action="/editUser">
+                  td <input type="number" name="isInstructor" min="0" max="1"><input type="hidden" name="userId" value="#{row.userId}">
+                  td <button name="programId" type="submit">Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Is UBC
+            tbody
+              each row, i in user
+                tr
+                  td
+                    =row.isUBC
+                tr
+                  <form method="post" action="/editUser">
+                  td <input type="number" name="isUBC" min="0" max="1"><input type="hidden" name="userId" value="#{row.userId}">
+                  td <button name="programId" type="submit">Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Credit Card
+            tbody
+              each row, i in user
+                tr
+                  td
+                    =row.creditCard
+                tr
+                  <form method="post" action="/editUser">
+                  td <input type="number" name="creditCard"><input type="hidden" name="userId" value="#{row.userId}">
+                  td <button name="programId" type="submit">Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Expiry Date
+            tbody
+              each row, i in user
+                tr
+                  td
+                    =row.expiryDate
+                tr
+                  <form method="post" action="/editUser">
+                  td <input type="datetime-local" name="expiryDate"><input type="hidden" name="userId" value="#{row.userId}">
+                  td <button name="programId" type="submit">Change</button>
+                  </form>
+          | <br>
+
+include ./layouts/footer.jade

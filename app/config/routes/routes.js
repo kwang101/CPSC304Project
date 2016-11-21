@@ -32,4 +32,10 @@ module.exports = function(app) {
   //query-routes ...selection, division, etc.
   require('./query-routes')(app);
 
+  require('./editlocation-routes')(app);
+
+  require('./edituser-routes')(app);
+
+  //require('./editinstructor-routes')(app);
+
 }

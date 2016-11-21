@@ -8,7 +8,7 @@ style.
 div.container-fluid.page-wrap
   div.row
     h1.Title.text-center Admin Console
-    div.col-md-6.col-md-offset-3
+    div.col-md-6.col-md-offset-1
       div.All-Classes
         h3.Title Activities
         table
@@ -65,11 +65,12 @@ div.container-fluid.page-wrap
                   = row.capacity
                 td
                   = row.address
-                td  <form method="post" action="/adminDropLocation"><button type="submit" name="submit" value="#{row.name}">Drop</button></form>
+                td  <form method="post" action="/adminDropLocation"><button type="submit" name="name" value="#{row.name}">Drop</button><input type="hidden" name="address" value="#{row.address}"></form>
+                td <form method="get" action="/editlocation/#{row.name}-#{row.address}"><button type="submit">Edit</button></form>
             <form method="post" action="/adminAddLocation">
             tr
               td <input type="text" name="name">
-              td <input type="text" name="capacity">
+              td <input type="number" name="capacity">
               td <input type="text" name="address">
               td <input type="submit" value="Add Location">
             </form>
@@ -84,6 +85,9 @@ div.container-fluid.page-wrap
               th IsAdmin
               th IsInstructor
               th IsUBC
+              th Credit Card
+              th Expiry Date
+              th Password
           tbody
             each row in users
               tr
@@ -99,48 +103,52 @@ div.container-fluid.page-wrap
                   = row.isInstructor
                 td
                   = row.isUBC
-                td  <form method="post" action="/adminDeleteUser"><button type="submit" name="submit" value="#{row.userId}">Drop</button></form>
+                td
+                  = row.creditCard
+                td
+                  = row.expiryDate
+                td <input type="password" value=#{row.passwordHash} readonly>
+                td  <form method="post" action="/adminDeleteUser"><button type="submit" name="userId" value="#{row.userId}">Drop</button></form>
+                td <form method="get" action="/edituser/#{row.userId}"><button type="submit">Edit</button></form>
             <form method="post" action="/adminAddUser">
             tr
               td <input type="text" name="name">
-              td <input type="text" name="email">
-              td <input type="text" name="userId">
-              td <input type="text" name="isAdmin">
-              td <input type="text" name="isInstructor">
-              td <input type="text" name="isUBC">
+              td <input type="email" name="email">
+              td <input type="number" name="userId">
+              td <input type="number" name="isAdmin" min="0" max="1">
+              td <input type="number" name="isInstructor" min="0" max="1">
+              td <input type="number" name="isUBC" min="0" max="1">
+              td <input type="number" name="creditCard">
+              td <input type="date" name="expiryDate" step="1">
+              td <input type="password" name="password">
               td <input type="submit" value="Add User">
             </form>
       div.All-instructors
         h3.Title Instructors
+        p Adding an instructor makes an existing user an instructor, removing one makes an existing instructor an ordinary user
         table
           thead
             tr
               th Name
-              th Email
               th User Id
-              th IsAdmin
-              th IsUBC
+              th Email
           tbody
             each row in instructors
               tr
                 td
                   = row.name
                 td
-                  = row.email
-                td
                   = row.userId
                 td
-                  = row.isAdmin
-                td
-                  = row.isUBC
-                td  <form method="post" action="/adminDeleteUser"><button type="submit" name="submit" value="#{row.userId}">Drop</button></form>
+                  = row.email
+                td  <form method="post" action="/adminRemoveInstructor"><button type="submit" name="userId" value="#{row.userId}">Remove</button></form>
+                td <form method="get" action="/editinstructor/#{row.userId}"><button type="submit">Edit</button></form>
             <form method="post" action="/adminAddInstructor">
             tr
-              td <input type="text" name="name">
-              td <input type="text" name="email">
-              td <input type="text" name="userId">
-              td <input type="text" name="isAdmin">
-              td <input type="text" name="isUBC">
+              td
+                select(type="text" name="instructor")
+                 each user, i in users
+                  option #{user.name}-#{user.userId}
               td <input type="submit" value="Add Instr.">
             </form>
       p.
