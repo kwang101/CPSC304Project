@@ -119,7 +119,6 @@ async.waterfall([
                 FOREIGN KEY (userId) REFERENCES User (userId)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
-
             )`,
             function (err, result) {
                 if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
