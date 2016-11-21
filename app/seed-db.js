@@ -139,14 +139,15 @@ module.exports = function () {
             connection.query(
                 `
                 INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000132, 12345678);
-                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000133, 12345678);
-                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000135, 12345678);
-                INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000136, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 15.00, 000133, 12345678);
+                INSERT INTO Registers VALUES (00009876546789, true, 50.00, 000134, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 15.00, 000135, 12345678);
+                INSERT INTO Registers VALUES (00001234142093, true, 15.00, 000136, 12345678);
                 INSERT INTO Registers VALUES (00001234142093, true, 20.00, 000137, 12345678);
                 INSERT INTO Registers VALUES (00001234141321, true, 15.00, 000135, 12341133);
                 INSERT INTO Registers VALUES (00001234149812, true, 15.00, 000135, 23452344);
                 INSERT INTO Registers VALUES (00001234145893, true, 15.00, 000135, 09289345);
-                INSERT INTO Registers VALUES (00001234148437, true, 15.00, 000135, 18237481)
+                INSERT INTO Registers VALUES (00001234148437, true, 15.00, 000135, 18237481);
                 `,
                 function (err, result) {
                     if (err && err.code !== 'ER_DUP_KEY' && err.code !== 'ER_DUP_ENTRY') callback(err);
