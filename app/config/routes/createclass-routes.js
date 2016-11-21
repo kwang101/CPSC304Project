@@ -43,15 +43,6 @@ module.exports = function(app) {
   }
 
   /**
-   * Receive Signin Form Data
-  **/
-  app.post('/signin',
-    passport.authenticate('local-login', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/');
-  });
-
-  /**
    * Display Instructor Console
   **/
 
@@ -59,14 +50,6 @@ module.exports = function(app) {
     renderInstructorDisplayInformation(req, res);
   });
 
-  /**
-   * Receive Signup Form Data
-  **/
-  app.post('/addbuilding',
-    passport.authenticate('local-signup', { failureRedirect: '/addbuilding' }),
-    function(req, res) {
-      res.redirect('/');
-  });
   /**
    * Teacher creates new class
   **/
