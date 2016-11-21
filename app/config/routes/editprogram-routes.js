@@ -1,12 +1,9 @@
 const passport = require('passport');
-
+const connection = require("../connection");
 module.exports = function(app) {
 
 
-  app.get('/editProgram/*', function(req, res) {
-    console.log(req.params);
-    var programId = req.params['0'];
-    const connection = require("../connection");
+  function renderProgramEditView(programId, req, res) {
     connection.query('SELECT * from cpsc304_test.Program where programId = ?',
         [programId],
         function(err, program) {
@@ -60,7 +57,8 @@ module.exports = function(app) {
                                                                                             availableLocations : availableLocations,
                                                                                             availableInstructors : availableInstructors,
                                                                                             availableUsers : availableUsers,
-                                                                                            programId : programId
+                                                                                            programId : programId,
+                                                                                            price : program[0].price
                                                                                         });
                                                                                     }
                                                                                 });
@@ -76,21 +74,97 @@ module.exports = function(app) {
                     });
             }
         });
+  };
+
+  app.get('/editProgram/*', function(req, res) {
+    console.log(req.params);
+    var programId = req.params['0'];
+    renderProgramEditView(programId, req, res);
   });
+
+    app.post('/editProgramPrice', function(req, res) {
+        console.log(req.body);
+        connection.query('UPDATE cpsc304_test.Program SET price=? where programId=?',
+            [req.body.price, req.body.programId],
+            function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    renderProgramEditView(req.body.programId, req, res);
+                }
+            });
+    });
 
     app.post('/editProgramName', function(req, res) {
         console.log(req.body);
+        connection.query('UPDATE cpsc304_test.Program SET name=? where programId=?',
+            [req.body.name, req.body.programId],
+            function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    renderProgramEditView(req.body.programId, req, res);
+                }
+            });
     });
 
     app.post('/editInstructor', function(req, res) {
         console.log(req.body);
+        connection.query('UPDATE cpsc304_test.TeachesClass SET userId=? where programId=?',
+            [req.body.userId, req.body.programId],
+            function(err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    renderProgramEditView(req.body.programId, req, res);
+                }
+            });
     });
 
     app.post('/dropUserFromProgram', function(req, res) {
         console.log(req.body);
+        connection.query('DELETE from cpsc304_test.Registers where programId=? AND userId=?',
+            [req.body.programId, req.body.userId],
+            function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    renderProgramEditView(req.body.programId, req, res);
+                }
+            });
     });
 
     app.post('/editProgramLocation', function(req, res) {
         console.log(req.body);
+        var location = req.body.location.split("-");
+        var name = location[0];
+        var address = location[1];
+        connection.query('UPDATE cpsc304_test.IsLocated SET name=?, address=? where programId=?',
+            [name, address, req.body.programId],
+            function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    renderProgramEditView(req.body.programId, req, res);
+                }
+            });
+    });
+
+    app.post('/addUsersToProgram', function(req, res) {
+        console.log(req.body);
+        var user = req.body.user.split("-");
+        var name = user[0];
+        var userId = user[1];
+        var price = req.body.price;
+        var transactionId = Math.floor(Math.random() * 9999) + 1234140000;
+        connection.query('INSERT INTO cpsc304_test.Registers VALUES(?, true, ?, ?, ?)',
+            [transactionId, price, req.body.programId, userId],
+            function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    renderProgramEditView(req.body.programId, req, res);
+                }
+            });
     });
 }

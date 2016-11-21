@@ -24,6 +24,20 @@ div.container-fluid.page-wrap
                   td <input type="text" name="name">
                   td <button name="programId" type="submit" value=#{programId}>Change</button>
                   </form>
+          | <br>
+          table
+            thead
+              tr
+                th Price
+            tbody
+              each row, i in program
+                tr
+                  td
+                    =row.price
+                  <form method="post" action="/editProgramPrice">
+                  td <input type="text" name="price">
+                  td <button name="programId" type="submit" value=#{programId}>Change</button>
+                  </form>
 
           | <br>
           table
@@ -42,7 +56,7 @@ div.container-fluid.page-wrap
                   td
                     select(type="text" name="location")
                       each loc, i in availableLocations
-                        option #{loc.name} #{loc.address}
+                        option #{loc.name}-#{loc.address}
                   td <button name="programId" type="submit" value=#{programId}>Change</button>
                   </form>
           | <br>
@@ -63,9 +77,11 @@ div.container-fluid.page-wrap
               tr
                 <form method="post" action="/addUsersToProgram">
                 td
-                  select(type="text" name="userId")
+                  select(type="text" name="user")
                     each user, i in availableUsers
-                      option #{user.name} #{user.userId}
+                      option #{user.name}-#{user.userId}
+                  <input type="hidden" name="programId" value=#{programId}>
+                  <input type="hidden" name="price" value=#{price}>
                 td <button type="submit">Add</button>
                 </form>
 
@@ -90,5 +106,6 @@ div.container-fluid.page-wrap
                     <input type="hidden" name="programId" value=#{programId}>
                   td <button type="submit">Change</button>
                   </form>
+          | <br>
 
 include ./layouts/footer.jade

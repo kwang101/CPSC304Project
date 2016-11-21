@@ -35,9 +35,13 @@ div.container-fluid.page-wrap
                 td  <form method="post" action="/adminDropProgram"><button type="submit" name="submit" value="#{row.programId}">Drop</button></form>
                 td <form method="get" action="/editprogram/#{row.programId}"><button type="submit">Edit</button></form>
             <form method="post" action="/adminAddProgram">
+            - var types = ["dropin", "intramural", "class"]
             tr
-              td <input type="text" name="name" value="Hello" readonly>
-              td <input type="text" name="programType">
+              td <input type="text" name="name">
+              td
+                select(type="text" name="programType")
+                 each type, i in types
+                  option #{type}
               td <input type="text" name="programId">
               td <input type="text" name="price">
               td <input type="text" name="term">
