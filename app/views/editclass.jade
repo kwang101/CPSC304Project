@@ -1,0 +1,85 @@
+include ./layouts/instr_header.jade
+
+style.
+  table, th, td {
+  border: 1px solid black;}
+
+div.container-fluid.page-wrap
+  div.row
+    div.col-md-10.col-md-offset-1
+      h1.Title.text-center Edit Class
+      div.row
+        div.col-md-6.col-md-offset-3.text-center
+          | <br>
+          table
+            thead
+              tr
+                th Class Name
+            tbody
+              each row, i in program
+                tr
+                  td
+                    =row.name
+                  <form method="post" action="/editProgramName">
+                  td <input type="text" name="name">
+                  td <button name="programId" type="submit" value=#{programId}>Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Price
+            tbody
+              each row, i in program
+                tr
+                  td
+                    =row.price
+                  <form method="post" action="/editProgramPrice">
+                  td <input type="text" name="price">
+                  td <button name="programId" type="submit" value=#{programId}>Change</button>
+                  </form>
+
+          | <br>
+          table
+            thead
+              tr
+                th Location Name
+                th Location Address
+            tbody
+              each row, i in locations
+                tr
+                  td
+                    =row.name
+                  td
+                    =row.address
+                  <form method="post" action="/editClassLocation">
+                  td
+                    select(type="text" name="location")
+                      each loc, i in availableLocations
+                        option #{loc.name}-#{loc.address}
+                  td <button name="programId" type="submit" value=#{programId}>Change</button>
+                  </form>
+          | <br>
+          table
+            thead
+              tr
+                th Instructor Name
+                th Instructor ID
+            tbody
+              each row, i in instructor
+                tr
+                  td
+                    =row.name
+                  td
+                    =row.userId
+                  <form method="post" action="/editInstructor">
+                  td
+                    select(type="text" name="userId")
+                      each user, i in availableInstructors
+                        option(value="#{user.userId}") #{user.name} #{user.userId}
+                    <input type="hidden" name="programId" value=#{programId}>
+                  td <button type="submit">Change</button>
+                  </form>
+          | <br>
+
+include ./layouts/footer.jade

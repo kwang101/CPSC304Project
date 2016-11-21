@@ -9,15 +9,13 @@ div.container-fluid.page-wrap
     div.col-md-10.col-md-offset-1
       h1.Title.text-center Hello Instructor ##{message}
       div.row
-        div.col-md-6.col-md-offset-3.text-center
-          p Here is where instructors can view exisitng, add, delete, and update programs.
-          | <br>
-          p Programs I'm Teaching
-          table.table-striped.table-bordered
-            table
-            thread
+        p.text-center Here is where instructors can view exisitng, add, delete, and update programs.
+        | <br>
+        p Programs I'm Teaching
+        table.table-striped.table-bordered
+          thread
                 tr
-                th Name &nbsp
+                  th Name &nbsp
                   th Program Type &nbsp
                   th Term &nbsp
                   th Program Id &nbsp
@@ -36,9 +34,20 @@ div.container-fluid.page-wrap
                     td
                       =row.price
                     td
-                      |<form method="post"><button type="submit" name="drop" value=row.programId>Cancel Class</button></form>
-
-          | <br>
-          | <br>
+                      |<form method="post"><button type="submit" name="drop" value=row.programId>Drop Class</button></form>
+                    td <form method="get" action="/editclass/#{row.programId}"><button type="submit">Edit</button></form>
+                <form method="post" action="/instructorAddClass">
+            - var types = ["class"]
+            tr
+              td <input type="text" name="name">
+              td
+                select(type="text" name="programType")
+                 each type, i in types
+                  option #{type}
+              td <input type="text" name="programId">
+              td <input type="text" name="price">
+              td <input type="text" name="term">
+              td <input type="submit" value="Add Class">
+            </form>
               
 include ./layouts/footer.jade
