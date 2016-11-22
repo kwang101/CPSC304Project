@@ -42,12 +42,10 @@ module.exports.routes = function(app) {
    * Receive Signup Form Data
   **/
   app.post('/signup',
-    passport.authenticate('local-signup', { failureRedirect: '/signup' },
-    function(req, res) {
-      console.log("here");
-      console.log(req);
-      console.log(res);
-      res.redirect('/dashboard');
+    passport.authenticate('local-signup', {
+        failureRedirect: '/signup',
+        successRedirect: '/dashboard',
+        failureFlash: true
     })
   );
 };

@@ -19,7 +19,7 @@ module.exports = function(salt) {
         if (rows.length) {
           return done(null, false, req.flash('flashMessage', 'Sorry! That email is already used.'));
         } else {
-          const User = {
+          let User = {
             email: req.body.email,
             password: bcrypt.hashSync(password, salt)
           };
@@ -36,9 +36,18 @@ module.exports = function(salt) {
                 return done(null, false, req.flash('flashMessage', 'Sorry! That email is already taken.'));
               }
 
-              User.userId = row.userId;
+              connection.query("SELECT * FROM User WHERE email = ? ",
+                [User.email],
+                function(err, rows) {
+                    if (err) {
+                        console.log(err);
+                        return done(null, false, req.flash('flashMessage', 'Couldn\'t save user.'));
+                    }
 
-              return done(null, User);
+                    console.log(rows);
+                    User.userId = rows[0].userId;
+                    done(null, User);
+                });
           });
         }
       })
