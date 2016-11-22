@@ -11,6 +11,7 @@ passport.deserializeUser(function(id, done) {
   connection.query("SELECT * FROM User WHERE userId = ? ",
     [id],
     function(err, rows) {
+      console.log(rows);
       done(err, rows[0]);
   });
 });
