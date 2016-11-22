@@ -55,7 +55,7 @@ module.exports.routes = function(app) {
 /**
  * Require login routing middleware
  */
-requiresLogin = function(req, res, next) {
+exports.requiresLogin = function(req, res, next) {
   if (!req.isAuthenticated()) {
     return res.status(401).send({
       message: 'User is not logged in'
@@ -64,7 +64,6 @@ requiresLogin = function(req, res, next) {
     return next();
   }
 };
-exports.requiresLogin = requiresLogin;
 /**
  * User authorizations routing middleware
  */
