@@ -9,12 +9,6 @@ module.exports = function(salt) {
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, username, password, done) {
-    console.log("REQ");
-    console.log(req);
-    console.log("USERNAME");
-    console.log(username);
-    console.log(password);
-    console.log(done);
     connection.query("SELECT * FROM User WHERE email = ?",
       [username],
       function(err, rows) {
@@ -23,31 +17,28 @@ module.exports = function(salt) {
         }
 
         if (rows.length) {
-          return done(req, req.res);
+          return done(null, false, req.flash('flashMessage', 'Sorry! That email is already used.'));
         } else {
           const User = {
             email: req.body.email,
             password: bcrypt.hashSync(password, salt)
           };
 
-          var userId = Math.floor(Math.random() * 99999999) + 0;
-          const insertQuery = "INSERT INTO User VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          const insertQuery = "INSERT INTO User (email, passwordHash, isUBC, creditCard, expiryDate, isInstructor, name) values (?,?,?,?,?,?,?)";
 
-          req.body.isUBC = req.body.isUBC == 'true';
-          req.body.isInstructor = req.body.isInstructor == 'false';
-          req.body.isUBC = req.body.isUBC ? 1 : 0;
-          req.body.isInstructor = req.body.isInstructor ? 1 : 0;
+          req.body.isUBC = req.body.isUBC === 'true';
+          req.body.isInstructor = req.body.isInstructor === 'true';
 
-          connection.query(insertQuery, [0, req.body.isInstructor, req.body.name, User.email, userId, req.body.isUBC, req.body.creditCard, req.body.expiryDate, User.password],
+          connection.query(insertQuery, [User.email, User.password, req.body.isUBC, req.body.creditcard, req.body.expirydate, req.body.isInstructor, req.body.name],
             function(err, row) {
               if (err) {
                 console.log(err);
-                return done(req, req.res);
+                return done(null, false, req.flash('flashMessage', 'Sorry! That email is already taken.'));
               }
 
               User.userId = row.userId;
 
-              return done(req, req.res);
+              return done(null, User);
           });
         }
       })
