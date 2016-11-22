@@ -22,7 +22,7 @@ div.container-fluid.page-wrap
                     =row.name
                 tr
                   <form method="post" action="/editProgramName">
-                  td <input type="text" name="name">
+                  td <input type="text" name="name" pattern="[a-zA-Z0-9] {,}">
                   td <button name="programId" type="submit" value=#{programId}>Change</button>
                   </form>
           | <br>
@@ -139,6 +139,6 @@ div.container-fluid.page-wrap
           | <br>
           | <br>
           | <br>
-          
+
 
 include ./layouts/footer.jade
