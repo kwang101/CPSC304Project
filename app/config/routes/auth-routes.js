@@ -69,7 +69,7 @@ exports.hasAuthorization = function(roles) {
     var that = this;
 
     return function(req, res, next) {
-        requiresLogin(req, res, function() {
+        exports.requiresLogin(req, res, function() {
 
           if (roles.isAdmin && roles.isAdmin !== req.user.isAdmin) {
               return res.status(403).send({
