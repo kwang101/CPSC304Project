@@ -171,27 +171,6 @@ async.waterfall([
                 else callback(null);
             }
         );
-    },
-    function (callback) {
-        connection.query(
-            `
-            DELIMITER //
-
-            CREATE TRIGGER program_trigger AFTER UPDATE
-            ON Program FOR EACH ROW
-
-            BEGIN
-                   UPDATE Registers
-                   SET fees = NEW.price
-                   WHERE programId = NEW.programId;
-            END; //
-            DELIMITER ;
-            `,
-            function(err, result) {
-                if (err) callback(err);
-                else callback(null);
-            }
-        );
     }
 ], function (err, result) {
     if (err) {
