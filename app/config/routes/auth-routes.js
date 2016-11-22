@@ -23,7 +23,7 @@ module.exports.routes = function(app) {
   app.post('/signin',
     passport.authenticate('local-login', { failureRedirect: '/' }),
     function(req, res) {
-      res.redirect('/dashboard');
+      res.redirect('/');
   });
 
   /**
@@ -44,7 +44,7 @@ module.exports.routes = function(app) {
   app.post('/signup',
     passport.authenticate('local-signup', {
         failureRedirect: '/signup',
-        successRedirect: '/dashboard',
+        successRedirect: '/',
         failureFlash: true
     })
   );

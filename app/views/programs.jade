@@ -12,14 +12,14 @@ div.container-fluid.page-wrap
         div.col-md-8.col-md-offset-2.text-center
           | <br>
           p Information about program ##{message}
-          table 
+          table.table-striped.table-bordered
             thead
               tr
-                th Program Type
-                th Term
-                th Price
-                th Name 
-                th Program Id
+                th Program Type &nbsp
+                th Term &nbsp
+                th Price &nbsp
+                th Name &nbsp
+                th Program Id &nbsp
             tbody
                 tr
                   td #{program.programType}
@@ -29,16 +29,16 @@ div.container-fluid.page-wrap
                   td #{program.programId}
           | <br>
           | <br>
-          table 
+          table.table-striped.table-bordered
             thead
               tr
-                th Start Time
-                th End Time
-                th Day of Week
-                th Location
-                th Address
-                th Teacher
-                th # of Enrolled
+                th Start Time &nbsp
+                th End Time &nbsp
+                th Day of Week &nbsp
+                th Location &nbsp
+                th Address &nbsp
+                th Teacher &nbsp
+                th # of Enrolled &nbsp
             tbody
                 tr
                   td #{occurs.startTime}
