@@ -1,35 +1,35 @@
 const passport = require('passport');
 
-module.exports.routes = function(app) {
+module.exports.routes = function (app) {
 
-    passport.serializeUser(function(user, done) {
-      done(null, user);
-    });
+  passport.serializeUser(function (user, done) {
+    done(null, user);
+  });
 
-    passport.deserializeUser(function(user, done) {
-      done(null, user);
-    });
-    /**
-     * Logout user
-     **/
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
+  passport.deserializeUser(function (user, done) {
+    done(null, user);
+  });
+  /**
+   * Logout user
+   **/
+  app.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+  });
 
-    /**
-   * Receive Signin Form Data
-  **/
+  /**
+ * Receive Signin Form Data
+**/
   app.post('/signin',
     passport.authenticate('local-login', { failureRedirect: '/' }),
-    function(req, res) {
+    function (req, res) {
       res.redirect('/');
-  });
+    });
 
   /**
    * Display Signup Form
   **/
-  app.get('/signup', function(req, res) {
+  app.get('/signup', function (req, res) {
     res.render('signup', {
       title: 'Signup to UBC Rec',
       message: 'Signup for UBC Rec',
@@ -43,9 +43,9 @@ module.exports.routes = function(app) {
   **/
   app.post('/signup',
     passport.authenticate('local-signup', {
-        failureRedirect: '/signup',
-        successRedirect: '/',
-        failureFlash: true
+      failureRedirect: '/signup',
+      successRedirect: '/',
+      failureFlash: true
     })
   );
 };
@@ -53,9 +53,9 @@ module.exports.routes = function(app) {
 /**
  * Require login routing middleware
  */
-exports.requiresLogin = function(req, res, next) {
+exports.requiresLogin = function (req, res, next) {
   if (!req.isAuthenticated()) {
-    return res.status(401).send({
+    res.render('error', {
       message: 'User is not logged in'
     });
   } else {
@@ -65,31 +65,31 @@ exports.requiresLogin = function(req, res, next) {
 /**
  * User authorizations routing middleware
  */
-exports.hasAuthorization = function(roles) {
-    var that = this;
+exports.hasAuthorization = function (roles) {
+  var that = this;
 
-    return function(req, res, next) {
-        exports.requiresLogin(req, res, function() {
+  return function (req, res, next) {
+    exports.requiresLogin(req, res, function () {
 
-          if (roles.isAdmin && roles.isAdmin !== req.user.isAdmin) {
-              return res.status(403).send({
-                  message: 'User is not authorized'
-              });
-          }
-
-          if (roles.isInstructor && roles.isInstructor !== req.user.isInstructor) {
-              return res.status(403).send({
-                  message: 'User is not authorized'
-              });
-          }
-
-          if (roles.isUBC && roles.isUBC !== req.user.isUBC) {
-              return res.status(403).send({
-                  message: 'User is not authorized'
-              });
-          }
-
-          return next();
+      if (roles.isAdmin && roles.isAdmin !== req.user.isAdmin) {
+        res.render('error', {
+          message: 'User is not authorized'
         });
-    };
+      }
+
+      if (roles.isInstructor && roles.isInstructor !== req.user.isInstructor) {
+        res.render('error', {
+          message: 'User is not authorized'
+        });
+      }
+
+      if (roles.isUBC && roles.isUBC !== req.user.isUBC) {
+        res.render('error', {
+          message: 'User is not authorized'
+        });
+      }
+
+      return next();
+    });
+  };
 };

@@ -1,12 +1,15 @@
+const passport = require('passport');
+const connection = require("../connection");
 module.exports = function(app) {
     /**
      * Display Home Page
     **/
-    // var requiresLogin = require('./auth-routes').requiresLogin;
+    var requiresLogin = require('./auth-routes').requiresLogin;
     // var hasAuthorization = require('./auth-routes').hasAuthorization;
 
     app.get('/users/*',
-        // requiresLogin, hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), 
+        requiresLogin, 
+        //hasAuthorization({ isUBC: 0, isAdmin: 1, isInstructor: 0}), 
         function(req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
