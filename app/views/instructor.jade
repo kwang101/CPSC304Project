@@ -34,7 +34,7 @@ div.container-fluid.page-wrap
                     td
                       =row.price
                     td
-                      |<form method="post"><button type="submit" name="drop" value=row.programId>Drop Class</button></form>
+                      |<form method="post"><button type="submit" name="drop" value=#{row.programId}>Drop Class</button></form>
                     td <form method="get" action="/editclass/#{row.programId}"><button type="submit">Edit</button></form>
                 <form method="post" action="/instructorAddClass">
             - var types = ["class"]
@@ -44,10 +44,12 @@ div.container-fluid.page-wrap
                 select(type="text" name="programType")
                  each type, i in types
                   option #{type}
+              td <input type="text" name="term">
               td <input type="text" name="programId">
               td <input type="text" name="price">
-              td <input type="text" name="term">
-              td <input type="submit" value="Add Class">
+              td <button type="submit" name="userId" value="#{message}">Add Class</button>
             </form>
+
+            p.
               
 include ./layouts/footer.jade

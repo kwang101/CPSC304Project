@@ -1,14 +1,15 @@
 const passport = require('passport');
-
+const connection = require("../connection");
 module.exports = function(app) {
 
-  // var requiresLogin = require('./auth-routes').requiresLogin;
+  var requiresLogin = require('./auth-routes').requiresLogin;
   var hasAuthorization = require('./auth-routes').hasAuthorization;
   
   /**
    * Display Instructor Profile
   **/
-  app.get('/instructor/*', 
+
+  app.get('/instructor/*', requiresLogin, hasAuthorization({ isInstructor: 1}),
     function(req, res) {
         const connection = require('../connection.js');
         var identification = req.params['0'];
@@ -49,8 +50,6 @@ module.exports = function(app) {
    * POST to instructor pages - add/drop classes
   **/
   app.post('/instructor/*',
-    // requiresLogin,
-    // passport.authenticate('local-signup', { failureRedirect: '/instructor' }),
     function (req, res) {
       const connection = require('../connection.js');
             var identification = req.params['0'];
@@ -75,4 +74,30 @@ module.exports = function(app) {
                 );
             }
         });
+
+app.post('/instructorAddClass', function(req, res) {
+    var identification = req.body.userId;
+    var userId = identification;
+    console.log(identification);
+    console.log(req.body);
+    connection.query('INSERT INTO cpsc304_test.Program VALUES (?, ?, ?, ?, ?)',
+        [req.body.programType, req.body.term, req.body.price, req.body.name, req.body.programId],
+        function(err, result) {
+            if (err) {
+                console.log(err);
+                console.log("Error while adding class: " + req.body.name);
+            } else {
+                connection.query('INSERT INTO TeachesClass VALUES (?,?)',
+                    [req.body.programId, userId],
+                    function(err, result) {
+                        if (err) {
+                            console.log(err);
+                            console.log("Error while adding class: " + req.body.name);
+                        } else {
+                            res.redirect(req.get('referer'));
+                        }
+                    })
+            }
+        });
+  });
 }
