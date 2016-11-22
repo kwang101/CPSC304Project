@@ -37,7 +37,7 @@ div.container-fluid.page-wrap
             <form method="post" action="/adminAddProgram">
             - var types = ["dropin", "intramural", "class"]
             tr
-              td <input type="text" name="name" pattern="[a-zA-Z0-9]" placeholder="a-Z, 0-9">
+              td <input type="text" name="name" pattern="[a-zA-Z0-9] {,}" placeholder="a-Z, 0-9">
               td
                 select(type="text" name="programType")
                  each type, i in types
