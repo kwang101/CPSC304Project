@@ -155,7 +155,7 @@ module.exports = function (app) {
         function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT s.name FROM cpsc304_test.user s WHERE NOT EXISTS (SELECT programId FROM cpsc304_test.classes p WHERE NOT EXISTS (SELECT s.userId FROM cpsc304_test.registers r WHERE s.userId=r.userId AND p.programId = r.programId));',
+            connection.query('SELECT s.name FROM user s WHERE NOT EXISTS (SELECT programId FROM classes p WHERE NOT EXISTS (SELECT s.userId FROM registers r WHERE s.userId=r.userId AND p.programId = r.programId));',
                 [identification],
                 function (err, users, fields) {
                     if (err)

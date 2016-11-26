@@ -4,7 +4,7 @@ module.exports = function(app) {
 
 
   function renderLocationEditView(name, address, req, res) {
-    connection.query('SELECT * from cpsc304_test.Location where name=? and address=?',
+    connection.query('SELECT * from Location where name=? and address=?',
         [name, address],
         function(err, location) {
             res.render('editlocation', {
@@ -18,7 +18,7 @@ module.exports = function(app) {
   };
 
   function performLocationUpdate(column, name, address, newValue, req, res) {
-    connection.query('UPDATE cpsc304_test.Location SET ' + column + '=? where name=? and address=?',
+    connection.query('UPDATE Location SET ' + column + '=? where name=? and address=?',
         [newValue, name, address],
         function(err, result) {
             if (err) {

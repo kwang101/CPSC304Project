@@ -14,7 +14,7 @@ module.exports = function (app) {
       // var price = [];
       // var name = [];
       // var programId = [];
-      connection.query('SELECT * FROM cpsc304_test.program', function (err, rows, fields) {
+      connection.query('SELECT * FROM program', function (err, rows, fields) {
         if (err)
           console.log('Error while performing Query.');
         else
@@ -28,7 +28,7 @@ module.exports = function (app) {
           // name.push(row.name);
           // programId.push(programId);
           // }
-          connection.query('SELECT * FROM cpsc304_test.user;', function (err, users, fields) {
+          connection.query('SELECT * FROM user;', function (err, users, fields) {
             if (err)
               console.log('Error while performing Query.');
             else
@@ -51,7 +51,7 @@ module.exports = function (app) {
 
       });
 
-      //SELECT * FROM cpsc304_test.program;
+      //SELECT * FROM program;
       //
 
 

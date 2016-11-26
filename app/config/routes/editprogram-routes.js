@@ -4,48 +4,48 @@ module.exports = function(app) {
 
 
   function renderProgramEditView(programId, req, res) {
-    connection.query('SELECT * from cpsc304_test.Program where programId = ?',
+    connection.query('SELECT * from Program where programId = ?',
         [programId],
         function(err, program) {
             if (err) {
                 console.log("Error while getting program " + programId);
             } else {
-                connection.query('SELECT name, address from cpsc304_test.IsLocated where programId=?',
+                connection.query('SELECT name, address from IsLocated where programId=?',
                     [programId],
                     function(err, locations) {
                         if (err) {
                             console.log(err);
                             console.log("Error while getting programlocation " + programId);
                         } else {
-                            connection.query('Select name, userId from cpsc304_test.User where userId IN (SELECT userId from cpsc304_test.Registers where programId=?)',
+                            connection.query('Select name, userId from User where userId IN (SELECT userId from Registers where programId=?)',
                                 [programId],
                                 function(err, users){
                                     if (err) {
                                         console.log("Error while getting userIds " + programId);
                                     } else {
-                                        connection.query('SELECT userId, name from cpsc304_test.User where isInstructor=1',
+                                        connection.query('SELECT userId, name from User where isInstructor=1',
                                             function(err, availableInstructors) {
                                                 if (err) {
                                                     console.log(err);
                                                 } else {
-                                                    connection.query('SELECT userId, name from cpsc304_test.User where userId IN (select userId from cpsc304_test.TeachesClass where programId=?)',
+                                                    connection.query('SELECT userId, name from User where userId IN (select userId from TeachesClass where programId=?)',
                                                         [programId],
                                                         function(err, instructor) {
                                                             if (err) {
                                                                 console.log(err);
                                                             } else {
-                                                                connection.query('SELECT name, address from cpsc304_test.Location',
+                                                                connection.query('SELECT name, address from Location',
                                                                     function(err, availableLocations) {
                                                                         if (err) {
                                                                             console.log(err);
                                                                         } else {
-                                                                            connection.query('Select name, userId from cpsc304_test.User where userId NOT IN (SELECT userId from cpsc304_test.Registers where programId=?)',
+                                                                            connection.query('Select name, userId from User where userId NOT IN (SELECT userId from Registers where programId=?)',
                                                                                 [programId],
                                                                                 function(err, availableUsers) {
                                                                                     if (err) {
                                                                                         console.log(err);
                                                                                     } else {
-                                                                                        connection.query('select * from cpsc304_test.Occurs where programId=?',
+                                                                                        connection.query('select * from Occurs where programId=?',
                                                                                             [programId],
                                                                                             function(err, occurs) {
                                                                                                 if (err) {
@@ -93,7 +93,7 @@ module.exports = function(app) {
 
     app.post('/editProgramPrice', function(req, res) {
         console.log(req.body);
-        connection.query('UPDATE cpsc304_test.Program SET price=? where programId=?',
+        connection.query('UPDATE Program SET price=? where programId=?',
             [req.body.price, req.body.programId],
             function(err, response) {
                 if (err) {
@@ -106,7 +106,7 @@ module.exports = function(app) {
 
     app.post('/editProgramName', function(req, res) {
         console.log(req.body);
-        connection.query('UPDATE cpsc304_test.Program SET name=? where programId=?',
+        connection.query('UPDATE Program SET name=? where programId=?',
             [req.body.name, req.body.programId],
             function(err, response) {
                 if (err) {
@@ -119,7 +119,7 @@ module.exports = function(app) {
 
     app.post('/editInstructor', function(req, res) {
         console.log(req.body);
-        connection.query('UPDATE cpsc304_test.TeachesClass SET userId=? where programId=?',
+        connection.query('UPDATE TeachesClass SET userId=? where programId=?',
             [req.body.userId, req.body.programId],
             function(err, data) {
                 if (err) {
@@ -132,7 +132,7 @@ module.exports = function(app) {
 
     app.post('/dropUserFromProgram', function(req, res) {
         console.log(req.body);
-        connection.query('DELETE from cpsc304_test.Registers where programId=? AND userId=?',
+        connection.query('DELETE from Registers where programId=? AND userId=?',
             [req.body.programId, req.body.userId],
             function(err, response) {
                 if (err) {
@@ -148,10 +148,10 @@ module.exports = function(app) {
         var location = req.body.location.split("-");
         var name = location[0];
         var address = location[1];
-        connection.query('DELETE FROM cpsc304_test.IsLocated where programId=?',
+        connection.query('DELETE FROM IsLocated where programId=?',
             [req.body.programId],
             function(err, response) {
-                connection.query('INSERT INTO cpsc304_test.IsLocated VALUES(?, ?, ?)',
+                connection.query('INSERT INTO IsLocated VALUES(?, ?, ?)',
                     [name, address, req.body.programId],
                     function(err, response) {
                         if (err) {
@@ -170,7 +170,7 @@ module.exports = function(app) {
         var userId = user[1];
         var price = req.body.price;
         var transactionId = Math.floor(Math.random() * 9999) + 1234140000;
-        connection.query('INSERT INTO cpsc304_test.Registers VALUES(?, true, ?, ?, ?)',
+        connection.query('INSERT INTO Registers VALUES(?, true, ?, ?, ?)',
             [transactionId, price, req.body.programId, userId],
             function(err, response) {
                 if (err) {
@@ -184,13 +184,13 @@ module.exports = function(app) {
     app.post('/addNewOccurs', function(req, res) {
         console.log(req.body);
         var params = req.body;
-        connection.query('INSERT IGNORE INTO cpsc304_test.Date VALUES(?, ?, ?)',
+        connection.query('INSERT IGNORE INTO Date VALUES(?, ?, ?)',
             [params.startTime, params.endTime, params.dayOfWeek],
             function(err, result) {
                 if (err) {
                     console.log(err);
                 } else {
-                    connection.query('INSERT IGNORE INTO cpsc304_test.Occurs VALUES(?, ?, ?, ?)',
+                    connection.query('INSERT IGNORE INTO Occurs VALUES(?, ?, ?, ?)',
                     [params.startTime, params.endTime, params.dayOfWeek, params.programId],
                     function(err, result) {
                         if (err) {
@@ -206,7 +206,7 @@ module.exports = function(app) {
     app.post('/dropDate', function(req, res) {
         console.log(req.body);
         var params = req.body;
-        connection.query('DELETE from cpsc304_test.Occurs where startTime=? and endTime=? and dayOfWeek=? and programId=?',
+        connection.query('DELETE from Occurs where startTime=? and endTime=? and dayOfWeek=? and programId=?',
             [params.startTime, params.endTime, params.dayOfWeek, params.programId],
             function(err, result) {
                 if (err) {

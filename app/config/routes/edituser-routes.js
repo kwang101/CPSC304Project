@@ -4,7 +4,7 @@ module.exports = function(app) {
 
 
   function renderUserEditView(userId, req, res) {
-    connection.query('SELECT * from cpsc304_test.User where userId=?',
+    connection.query('SELECT * from User where userId=?',
         [userId],
         function(err, user) {
             res.render('edituser', {
@@ -18,7 +18,7 @@ module.exports = function(app) {
   };
 
   function performUserUpdate(column, userId, newValue, req, res) {
-    connection.query('UPDATE cpsc304_test.User SET ' + column + '=? where userId=?',
+    connection.query('UPDATE User SET ' + column + '=? where userId=?',
         [newValue, userId],
         function(err, result) {
             if (err) {

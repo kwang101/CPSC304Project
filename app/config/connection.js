@@ -1,10 +1,11 @@
 const mysql = require('mysql');
 
 const pool = mysql.createPool({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'cpsc304_test',
+  host     : 'cpsc304database.ciatblhwhxlk.us-west-2.rds.amazonaws.com',
+  port     : '3306',
+  user     : 'geordiep',
+  password : 'database',
+  database : 'cpsc304',
   multipleStatements: true
 });
 

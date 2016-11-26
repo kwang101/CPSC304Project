@@ -150,7 +150,7 @@ async.waterfall([
     function (callback) {
         connection.query(
             `CREATE VIEW classes AS
-            SELECT * FROM cpsc304_test.program p
+            SELECT * FROM program p
             WHERE programType = "class";
             `,
             function (err, result) {

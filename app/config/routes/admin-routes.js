@@ -8,20 +8,20 @@ var requiresLogin = require('./auth-routes').requiresLogin;
 var hasAuthorization = require('./auth-routes').hasAuthorization;
   //keep a list of information so we don't have to fetch it again
   function renderAdminDisplayInformation(req, res) {
-    connection.query('SELECT * from cpsc304_test.Program', function(err, programs, fields) {
+    connection.query('SELECT * from Program', function(err, programs, fields) {
         if (err)
           console.log("Error in admin-routes.js: " + err);
         else
-        connection.query('SELECT * from cpsc304_test.Location', function(err, locations, fields) {
+        connection.query('SELECT * from Location', function(err, locations, fields) {
             if (err)
               console.log("Error in admin-routes.js: " + err);
             else
-            connection.query('SELECT * from cpsc304_test.User', function(err, users, fields) {
+            connection.query('SELECT * from User', function(err, users, fields) {
                 if (err)
                   console.log("Error in admin-routes.js: " + err);
                 else
                 connection.query(
-                    'SELECT * from cpsc304_test.User U where U.isInstructor=1',
+                    'SELECT * from User U where U.isInstructor=1',
                     function(err, instructors, fields) {
                         console.log("Admin Route");
                         if (err) {
@@ -67,25 +67,25 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
     console.log(req.body);
     var programId = req.body.submit;
     //delete from program table
-    connection.query('DELETE FROM cpsc304_test.TeachesClass where programId=?',[programId], function(err, users, fields) {
+    connection.query('DELETE FROM TeachesClass where programId=?',[programId], function(err, users, fields) {
         if (err) {
             console.log(err);
             console.log("Error in dropping program from TeachesClass table: programId = " + programId)
         } else {
-            connection.query('DELETE FROM cpsc304_test.Registers where programId=?', [programId], function(err, users, fields) {
+            connection.query('DELETE FROM Registers where programId=?', [programId], function(err, users, fields) {
                 if (err) {
                     console.log(err);
                     console.log("Error in dropping program from Registers table: programId = " + programId);
                 } else {
-                    connection.query('DELETE FROM cpsc304_test.IsLocated where programId = ?', [programId], function(err, users, fields) {
+                    connection.query('DELETE FROM IsLocated where programId = ?', [programId], function(err, users, fields) {
                         if (err) {
                             console.log(err)
                         } else {
-                            connection.query('DELETE FROM cpsc304_test.Occurs where programId = ?', [programId], function(err, users, fields) {
+                            connection.query('DELETE FROM Occurs where programId = ?', [programId], function(err, users, fields) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                    connection.query('DELETE FROM cpsc304_test.Program where programId = ?', [programId], function(err, users, fields) {
+                                    connection.query('DELETE FROM Program where programId = ?', [programId], function(err, users, fields) {
                                         if (err) {
                                             console.log(err);
                                             console.log("Error in dropping program from Program table: programId = " + programId);
@@ -107,7 +107,7 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
   app.post('/adminDropLocation', function(req, res) {
     console.log(req.body);
     var params = req.body;
-    connection.query('DELETE FROM cpsc304_test.Location where name=? and address=?',
+    connection.query('DELETE FROM Location where name=? and address=?',
         [params.name, params.address],
         function(err, result) {
             renderAdminDisplayInformation(req, res);
@@ -116,7 +116,7 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
 
   app.post('/adminAddLocation', function(req, res) {
     console.log(req.body);
-    connection.query('INSERT INTO cpsc304_test.Location VALUES(?, ?, ?)',
+    connection.query('INSERT INTO Location VALUES(?, ?, ?)',
         [req.body.capacity, req.body.name, req.body.address],
         function(err, result) {
             if (err) {
@@ -130,7 +130,7 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
   app.post('/adminDeleteUser', function(req, res) {
     console.log(req.body);
     var userId = req.body.userId;
-    connection.query('DELETE FROM cpsc304_test.User where userId=?',
+    connection.query('DELETE FROM User where userId=?',
         [userId],
         function(err, result) {
             if (err) {
@@ -145,7 +145,7 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
     console.log(req.body);
     const password = bcrypt.hashSync(req.body.password, salt);
     var params = req.body
-    connection.query('INSERT INTO cpsc304_test.User VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    connection.query('INSERT INTO User VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [params.isAdmin, params.isInstructor, params.name, params.email, params.userId, params.isUBC, params.creditCard, params.expiryDate, password],
         function(err, result){
             if (err) {
@@ -160,7 +160,7 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
     console.log(req.body);
     var params = req.body;
     var userId = params.instructor.split("-")[1];
-    connection.query('UPDATE cpsc304_test.User SET isInstructor=1 where userId=?',
+    connection.query('UPDATE User SET isInstructor=1 where userId=?',
         [userId],
         function(err, result) {
             if (err) {
@@ -174,13 +174,13 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
   app.post('/adminRemoveInstructor', function(req, res) {
     console.log(req.body);
     var userId = req.body.userId;
-    connection.query('DELETE from cpsc304_test.TeachesClass where userId=?',
+    connection.query('DELETE from TeachesClass where userId=?',
         [userId],
         function(err, result) {
             if (err) {
                 console.log(err);
             } else {
-                connection.query('UPDATE cpsc304_test.User SET isInstructor=0 where userId=?',
+                connection.query('UPDATE User SET isInstructor=0 where userId=?',
                     [userId],
                     function(err, result) {
                         if (err) {
@@ -196,7 +196,7 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
     console.log(req.body);
     var params = req.body;
     var userId = params.instructor.split("-")[1];
-    connection.query('UPDATE cpsc304_test.User SET isInstructor=1 where userId=?',
+    connection.query('UPDATE User SET isInstructor=1 where userId=?',
         [userId],
         function(err, result) {
             if (err) {
@@ -209,7 +209,7 @@ var hasAuthorization = require('./auth-routes').hasAuthorization;
 
   app.post('/adminAddProgram', function(req, res) {
     console.log(req.body);
-    connection.query('INSERT INTO cpsc304_test.Program VALUES (?, ?, ?, ?, ?)',
+    connection.query('INSERT INTO Program VALUES (?, ?, ?, ?, ?)',
         [req.body.programType, req.body.term, req.body.price, req.body.name, req.body.programId],
         function(err, result) {
             if (err) {
