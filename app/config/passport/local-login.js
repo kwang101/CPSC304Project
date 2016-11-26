@@ -10,7 +10,7 @@ module.exports = function(salt) {
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, email, password, done) {
-    connection.query("SELECT * FROM User WHERE email = ?",
+    connection.query("SELECT * FROM user WHERE email = ?",
       [email],
       function(err, rows) {
         if (err)

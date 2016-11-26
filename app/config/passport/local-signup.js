@@ -9,7 +9,7 @@ module.exports = function(salt) {
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, username, password, done) {
-    connection.query("SELECT * FROM User WHERE email = ?",
+    connection.query("SELECT * FROM user WHERE email = ?",
       [username],
       function(err, rows) {
         if (err) {
@@ -24,7 +24,7 @@ module.exports = function(salt) {
             password: bcrypt.hashSync(password, salt)
           };
 
-          const insertQuery = "INSERT INTO User (email, passwordHash, isUBC, creditCard, expiryDate, isInstructor, name) values (?,?,?,?,?,?,?)";
+          const insertQuery = "INSERT INTO user (email, passwordHash, isUBC, creditCard, expiryDate, isInstructor, name) values (?,?,?,?,?,?,?)";
 
           req.body.isUBC = req.body.isUBC === 'true';
           req.body.isInstructor = req.body.isInstructor === 'true';
@@ -36,7 +36,7 @@ module.exports = function(salt) {
                 return done(null, false, req.flash('flashMessage', 'Sorry! That email is already taken.'));
               }
 
-              connection.query("SELECT * FROM User WHERE email = ? ",
+              connection.query("SELECT * FROM user WHERE email = ? ",
                 [User.email],
                 function(err, rows) {
                     if (err) {
