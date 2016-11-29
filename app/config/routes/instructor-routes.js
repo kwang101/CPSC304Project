@@ -80,7 +80,7 @@ app.post('/instructorAddClass', function(req, res) {
     var userId = identification;
     console.log(identification);
     console.log(req.body);
-    connection.query('INSERT INTO cpsc304_test.Program VALUES (?, ?, ?, ?, ?)',
+    connection.query('INSERT INTO Program VALUES (?, ?, ?, ?, ?)',
         [req.body.programType, req.body.term, req.body.price, req.body.name, req.body.programId],
         function(err, result) {
             if (err) {

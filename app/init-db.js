@@ -173,7 +173,7 @@ async.waterfall([
                 else callback(null);
             }
         );
-    },
+    }
 
 ], function (err, result) {
     if (err) {

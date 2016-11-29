@@ -4,19 +4,19 @@ module.exports = function(app) {
 
 
   function renderInstructorEditView(userId, req, res) {
-    connection.query('SELECT * from cpsc304_test.Program where programId in (SELECT programId from cpsc304_test.TeachesClass where userId=?)',
+    connection.query('SELECT * from Program where programId in (SELECT programId from TeachesClass where userId=?)',
         [userId],
         function(err, classes) {
             if (err) {
                 console.log(err);
             } else {
-                connection.query('SELECT * from cpsc304_test.Program where programType=? and programId not in (SELECT programId from cpsc304_test.Program where programId in (SELECT programId from cpsc304_test.TeachesClass where userId=?))',
+                connection.query('SELECT * from Program where programType=? and programId not in (SELECT programId from Program where programId in (SELECT programId from TeachesClass where userId=?))',
                     ["class", userId],
                     function(err, availableClasses) {
                         if (err) {
                             console.log(err);
                         } else {
-                            connection.query('SELECT * from cpsc304_test.User where userId=?',
+                            connection.query('SELECT * from User where userId=?',
                                 [userId],
                                 function(err, instructor) {
                                     if (err) {
@@ -40,7 +40,7 @@ module.exports = function(app) {
   };
 
   function performUserUpdate(column, userId, newValue, req, res) {
-    connection.query('UPDATE cpsc304_test.User SET ' + column + '=? where userId=?',
+    connection.query('UPDATE User SET ' + column + '=? where userId=?',
         [newValue, userId],
         function(err, result) {
             if (err) {
@@ -60,7 +60,7 @@ module.exports = function(app) {
     app.post('/dropClass', function(req, res) {
         console.log(req.body);
         var params = req.body;
-        connection.query('DELETE FROM cpsc304_test.TeachesClass where programId=? and userId=?',
+        connection.query('DELETE FROM TeachesClass where programId=? and userId=?',
             [params.programId, params.userId],
             function(err, result) {
                 if (err) {
