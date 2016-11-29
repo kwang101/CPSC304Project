@@ -7,6 +7,7 @@ const pool = mysql.createPool({
   database : process.env.DB_NAME || 'cpsc304_test',
   port: process.env.DB_PORT || 3306,
   multipleStatements: true,
+  timeout: 100000,
   acquireTimeout: 1000000
 });
 
