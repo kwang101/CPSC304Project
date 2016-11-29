@@ -7,8 +7,6 @@ const app           = express();
 // Include Authentication Strategies
 require('./config/passport/passport');
 
-require('./init-db');
-
 app.set('view engine', 'jade');
 app.set('views', './app/views');
 app.use(express.static('./app/public'));

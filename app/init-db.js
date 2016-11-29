@@ -149,9 +149,10 @@ async.waterfall([
     },
     function (callback) {
         connection.query(
-            `CREATE VIEW classes AS
-            SELECT * FROM cpsc304_test.program p
-            WHERE programType = "class";
+            `
+            CREATE VIEW classes AS
+            SELECT * FROM Program p
+            WHERE p.programType = "class";
             `,
             function (err, result) {
                 if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
@@ -163,7 +164,7 @@ async.waterfall([
         connection.query(
             `CREATE VIEW programcapacity AS
             SELECT programType, p.programId, capacity
-            FROM program p, islocated i, location l
+            FROM Program p, IsLocated i, Location l
             WHERE p.programId = i.programId AND i.name = l.name
             `,
             function (err, result) {
@@ -180,3 +181,5 @@ async.waterfall([
     console.log('Database Tables have been created');
     require('./seed-db.js')();
 });
+
+// mysql --user=g89pjlxdyo776ioi --password=ok8pai8mvwqhn5ck --host=sulnwdk5uwjw1r2k.cbetxkdyhwsb.us-east-1.rds.amazonaws.com okep5tr7f8lcolsi
