@@ -17,7 +17,7 @@ module.exports = function(app) {
                             console.log(err);
                             console.log("Error while getting programlocation " + programId);
                         } else {
-                            connection.query('Select name, userId from User where userId IN (SELECT userId from Registers where programId=?)',
+                            connection.query('SELECT name, userId from User where userId IN (SELECT userId from Registers where programId=?)',
                                 [programId],
                                 function(err, users){
                                     if (err) {
@@ -39,13 +39,13 @@ module.exports = function(app) {
                                                                         if (err) {
                                                                             console.log(err);
                                                                         } else {
-                                                                            connection.query('Select name, userId from User where userId NOT IN (SELECT userId from Registers where programId=?)',
+                                                                            connection.query('SELECT name, userId from User where userId NOT IN (SELECT userId from Registers where programId=?)',
                                                                                 [programId],
                                                                                 function(err, availableUsers) {
                                                                                     if (err) {
                                                                                         console.log(err);
                                                                                     } else {
-                                                                                        connection.query('select * from Occurs where programId=?',
+                                                                                        connection.query('SELECT * from Occurs where programId=?',
                                                                                             [programId],
                                                                                             function(err, occurs) {
                                                                                                 if (err) {

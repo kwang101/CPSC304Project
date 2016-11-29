@@ -35,7 +35,7 @@ module.exports = function (app) {
         res.redirect('../users/' + input);
         //this is for admin
       } else if (req.body.admin != undefined) {
-        connection.query('SELECT * FROM user WHERE userId IN (SELECT userId FROM user WHERE userId = ? AND isAdmin = 1)',
+        connection.query('SELECT * FROM User WHERE userId IN (SELECT userId FROM User WHERE userId = ? AND isAdmin = 1)',
           [input],
           function (err, adminexists, fields) {
             console.log(adminexists);
@@ -47,7 +47,7 @@ module.exports = function (app) {
               res.redirect('../admin');
           });
       } else if (req.body.instructor != undefined) {
-        connection.query('SELECT * FROM user WHERE userId IN (SELECT userId FROM user WHERE userId = ? AND isInstructor = 1)',
+        connection.query('SELECT * FROM User WHERE userId IN (SELECT userId FROM User WHERE userId = ? AND isInstructor = 1)',
           [input],
           function (err, instructorexists, fields) {
             console.log(instructorexists);

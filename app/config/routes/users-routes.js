@@ -13,19 +13,19 @@ module.exports = function(app) {
         function(req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT * FROM program WHERE programId IN (SELECT programId FROM registers WHERE userId = ? )',
+            connection.query('SELECT * FROM Program WHERE programId IN (SELECT programId FROM Registers WHERE userId = ? )',
                 [identification],
                 function(err, registered, fields) {
                     if (err)
                         console.log('Error while performing Query.');
                     else
-                        connection.query('SELECT * FROM program WHERE programId NOT IN (SELECT programId FROM registers WHERE userId = ? )',
+                        connection.query('SELECT * FROM Program WHERE programId NOT IN (SELECT programId FROM Registers WHERE userId = ? )',
                             [identification],
                             function(err, notRegistered, fields) {
                                 if (err)
                                     console.log('Error while performing Query.');
                                 else
-                                    connection.query('SELECT * FROM user WHERE userId IN (SELECT userId FROM user WHERE userId = ?);',
+                                    connection.query('SELECT * FROM User WHERE userId IN (SELECT userId FROM User WHERE userId = ?);',
                                         [identification],
                                         function(err, userexists, fields) {
                                             if (userexists.length == 0)
@@ -70,7 +70,7 @@ module.exports = function(app) {
             if (req.body.drop != undefined) {
                 console.log(programId);
                 console.log(identification);
-                connection.query('DELETE FROM registers WHERE programId = ? AND userId = ?',
+                connection.query('DELETE FROM Registers WHERE programId = ? AND userId = ?',
                     [programId, identification],
                     function(err, result) {
                         if (err)
@@ -81,7 +81,7 @@ module.exports = function(app) {
                 );
                 //this is for register
             } else {
-                connection.query('SELECT * FROM user WHERE userId = ?',
+                connection.query('SELECT * FROM User WHERE userId = ?',
                     [identification],
                     function(err, user, fields) {
                         if (err)
@@ -93,7 +93,7 @@ module.exports = function(app) {
                             else isUBC = 2;
                         console.log('isUBC')
                         console.log(isUBC);
-                        connection.query('SELECT * FROM program WHERE programId = ?',
+                        connection.query('SELECT * FROM Program WHERE programId = ?',
                             [programId],
                             function(err, program, fields) {
                                 if (err)
@@ -121,7 +121,7 @@ module.exports = function(app) {
         function(req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT * FROM program WHERE programId = ?',
+            connection.query('SELECT * FROM Program WHERE programId = ?',
                 [identification],
                 function(err, program, fields) {
                     if (err)

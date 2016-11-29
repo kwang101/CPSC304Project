@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fec3462-344e-4dfe-883d-333316ace36c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/admin-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/admin-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/dashboard-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/dashboard-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/editclass-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/editclass-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/editinstructor-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/editinstructor-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/editlocation-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/editlocation-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/editprogram-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/editprogram-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/edituser-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/edituser-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/instructor-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/instructor-routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routes/query-routes.js" afterPath="$PROJECT_DIR$/app/config/routes/query-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/init-db.js" afterPath="$PROJECT_DIR$/app/init-db.js" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="seed-db.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="seed-db.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/seed-db.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="82" column="102" selection-start-line="82" selection-start-column="102" selection-end-line="82" selection-end-column="102" />
+            <state relative-caret-position="200">
+              <caret line="82" column="69" selection-start-line="82" selection-start-column="69" selection-end-line="82" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -45,88 +36,8 @@
       <file leaf-file-name="admin-routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/routes/admin-routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="216" column="9" selection-start-line="216" selection-start-column="9" selection-end-line="216" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard-routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/routes/dashboard-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editclass-routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/routes/editclass-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="118" column="33" selection-start-line="118" selection-start-column="33" selection-end-line="118" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editinstructor-routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/routes/editinstructor-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editlocation-routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/routes/editlocation-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editprogram-routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/routes/editprogram-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="208" column="38" selection-start-line="208" selection-start-column="38" selection-end-line="208" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edituser-routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/routes/edituser-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="instructor-routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/routes/instructor-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="82" column="34" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="query-routes.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/config/routes/query-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="637">
-              <caret line="174" column="2" selection-start-line="174" selection-start-column="2" selection-end-line="174" selection-end-column="2" />
+            <state relative-caret-position="96">
+              <caret line="72" column="43" selection-start-line="72" selection-start-column="43" selection-end-line="72" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -148,15 +59,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/models/users.js" />
-        <option value="$PROJECT_DIR$/app/config/routes/default-routes.js" />
         <option value="$PROJECT_DIR$/app/config/passport/local-login.js" />
         <option value="$PROJECT_DIR$/app/config/controllers/auth.controller.js" />
         <option value="$PROJECT_DIR$/app/config/routes/signup-routes.js" />
         <option value="$PROJECT_DIR$/app/config/routes/routes.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/header.jade" />
         <option value="$PROJECT_DIR$/app/config/routes/createclass-routes.js" />
-        <option value="$PROJECT_DIR$/app/config/routes/users-routes.js" />
-        <option value="$PROJECT_DIR$/app/config/routes/program-routes.js" />
         <option value="$PROJECT_DIR$/app/views/signup.jade" />
         <option value="$PROJECT_DIR$/app/config/routes/auth-routes.js" />
         <option value="$PROJECT_DIR$/app/config/passport/helpers.js" />
@@ -168,13 +76,16 @@
         <option value="$PROJECT_DIR$/app/init-db.js" />
         <option value="$PROJECT_DIR$/app/config/routes/admin-routes.js" />
         <option value="$PROJECT_DIR$/app/config/routes/dashboard-routes.js" />
-        <option value="$PROJECT_DIR$/app/config/routes/editclass-routes.js" />
         <option value="$PROJECT_DIR$/app/config/routes/editinstructor-routes.js" />
         <option value="$PROJECT_DIR$/app/config/routes/editlocation-routes.js" />
-        <option value="$PROJECT_DIR$/app/config/routes/editprogram-routes.js" />
         <option value="$PROJECT_DIR$/app/config/routes/edituser-routes.js" />
+        <option value="$PROJECT_DIR$/app/config/routes/default-routes.js" />
+        <option value="$PROJECT_DIR$/app/config/routes/editclass-routes.js" />
+        <option value="$PROJECT_DIR$/app/config/routes/editprogram-routes.js" />
         <option value="$PROJECT_DIR$/app/config/routes/instructor-routes.js" />
+        <option value="$PROJECT_DIR$/app/config/routes/users-routes.js" />
         <option value="$PROJECT_DIR$/app/config/routes/query-routes.js" />
+        <option value="$PROJECT_DIR$/app/config/routes/program-routes.js" />
       </list>
     </option>
   </component>
@@ -388,12 +299,12 @@
       <workItem from="1479507700909" duration="2008000" />
       <workItem from="1479779655299" duration="888000" />
       <workItem from="1480385097107" duration="4895000" />
-      <workItem from="1480420304779" duration="1591000" />
+      <workItem from="1480420304779" duration="2672000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19031000" />
+    <option name="totallyTimeSpent" value="20112000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="192" width="1440" height="641" extended-state="0" />
@@ -402,7 +313,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30232558" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28856623" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42649728" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -566,20 +477,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/controllers/auth.controller.js" />
-    <entry file="file://$PROJECT_DIR$/app/config/routes/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/routes/default-routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/header.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -588,31 +485,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/createclass-routes.js" />
-    <entry file="file://$PROJECT_DIR$/app/config/routes/users-routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="68" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/routes/program-routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/signup.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="46" column="83" selection-start-line="46" selection-start-column="83" selection-end-line="46" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/routes/auth-routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-382">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -662,41 +538,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/seed-db.js">
+    <entry file="file://$PROJECT_DIR$/app/config/routes/auth-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="82" column="102" selection-start-line="82" selection-start-column="102" selection-end-line="82" selection-end-column="102" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/routes/admin-routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="216" column="9" selection-start-line="216" selection-start-column="9" selection-end-line="216" selection-end-column="9" />
+        <state relative-caret-position="-465">
+          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/dashboard-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
+        <state relative-caret-position="1007">
           <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routes/default-routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="37" column="82" selection-start-line="37" selection-start-column="82" selection-end-line="37" selection-end-column="82" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/editclass-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="118" column="33" selection-start-line="118" selection-start-column="33" selection-end-line="118" selection-end-column="33" />
+        <state relative-caret-position="-418">
+          <caret line="33" column="123" selection-start-line="33" selection-start-column="123" selection-end-line="33" selection-end-column="123" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/editinstructor-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
+        <state relative-caret-position="1064">
           <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
           <folding />
         </state>
@@ -704,7 +580,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/editlocation-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
+        <state relative-caret-position="-275">
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding />
         </state>
@@ -712,15 +588,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/editprogram-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="208" column="38" selection-start-line="208" selection-start-column="38" selection-end-line="208" selection-end-column="38" />
+        <state relative-caret-position="361">
+          <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/edituser-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
+        <state relative-caret-position="380">
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding />
         </state>
@@ -728,16 +604,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/instructor-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="82" column="34" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
+        <state relative-caret-position="-703">
+          <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routes/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-218">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routes/admin-routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="72" column="43" selection-start-line="72" selection-start-column="43" selection-end-line="72" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routes/program-routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="41" column="62" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routes/query-routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="174" column="2" selection-start-line="174" selection-start-column="2" selection-end-line="174" selection-end-column="2" />
+        <state relative-caret-position="248">
+          <caret line="101" column="9" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routes/users-routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="135" column="68" selection-start-line="135" selection-start-column="68" selection-end-line="135" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/seed-db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="82" column="69" selection-start-line="82" selection-start-column="69" selection-end-line="82" selection-end-column="89" />
           <folding />
         </state>
       </provider>

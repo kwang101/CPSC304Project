@@ -8,7 +8,7 @@ module.exports = function (app) {
         function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT * FROM program WHERE price <= ? ORDER BY price DESC',
+            connection.query('SELECT * FROM Program WHERE price <= ? ORDER BY price DESC',
                 [identification],
                 function (err, programs, fields) {
                     if (err)
@@ -40,7 +40,7 @@ module.exports = function (app) {
         function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT programType, term, name, startTime, endTime, dayOfWeek, program.programId FROM program JOIN occurs ON occurs.programId = program.programId AND occurs.startTime >= ? ORDER BY startTime;',
+            connection.query('SELECT programType, term, name, startTime, endTime, dayOfWeek, p.programId FROM Program p JOIN Occurs o ON o.programId = p.programId AND o.startTime >= ? ORDER BY startTime;',
                 [identification],
                 function (err, programs, fields) {
                     if (err)
@@ -74,7 +74,7 @@ module.exports = function (app) {
             var identification = req.params['0'];
             console.log(identification);
             if (identification == "most") {
-                connection.query('SELECT * FROM program WHERE price = (SELECT MAX(price) FROM program);',
+                connection.query('SELECT * FROM Program WHERE price = (SELECT MAX(price) FROM Program);',
                     function (err, programs, fields) {
                         if (err)
                             console.log('Error while performing Query.');
@@ -91,7 +91,7 @@ module.exports = function (app) {
                     });
             }
             else
-                connection.query('SELECT * FROM program WHERE price = (SELECT MIN(price) FROM program);',
+                connection.query('SELECT * FROM Program WHERE price = (SELECT MIN(price) FROM Program);',
                     function (err, programs, fields) {
                         if (err)
                             console.log('Error while performing Query.');
@@ -116,7 +116,7 @@ module.exports = function (app) {
             var identification = req.params['0'];
             console.log(identification);
             if (identification == "price") {
-                connection.query('SELECT programType, AVG(price) AS average FROM program GROUP BY programType',
+                connection.query('SELECT programType, AVG(price) AS average FROM Program GROUP BY programType',
                     function (err, rows, fields) {
                         if (err)
                             console.log('Error while performing Query.');
@@ -155,7 +155,7 @@ module.exports = function (app) {
         function (req, res) {
             const connection = require('../connection.js');
             var identification = req.params['0'];
-            connection.query('SELECT s.name FROM user s WHERE NOT EXISTS (SELECT programId FROM classes p WHERE NOT EXISTS (SELECT s.userId FROM registers r WHERE s.userId=r.userId AND p.programId = r.programId));',
+            connection.query('SELECT s.name FROM User s WHERE NOT EXISTS (SELECT programId FROM classes p WHERE NOT EXISTS (SELECT s.userId FROM Registers r WHERE s.userId=r.userId AND p.programId = r.programId));',
                 [identification],
                 function (err, users, fields) {
                     if (err)

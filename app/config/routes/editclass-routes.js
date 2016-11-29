@@ -31,7 +31,7 @@ module.exports = function(app) {
                                                 if (err) {
                                                     console.log(err);
                                                 } else {
-                                                    connection.query('SELECT userId, name from User where userId IN (select userId from TeachesClass where programId=?)',
+                                                    connection.query('SELECT userId, name from User where userId IN (SELECT userId from TeachesClass where programId=?)',
                                                         [programId],
                                                         function(err, instructor) {
                                                             if (err) {

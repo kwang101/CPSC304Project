@@ -13,19 +13,19 @@ module.exports = function(app) {
     function(req, res) {
         const connection = require('../connection.js');
         var identification = req.params['0'];
-        connection.query('SELECT * FROM program WHERE programId IN (SELECT programId FROM TeachesClass WHERE userId = ? )',
+        connection.query('SELECT * FROM Program WHERE programId IN (SELECT programId FROM TeachesClass WHERE userId = ? )',
             [identification],
             function (err, registered, fields) {
                 if (err)
                     console.log('Error while performing Query.');
                 else
-                    connection.query('SELECT * FROM program WHERE programId NOT IN (SELECT programId FROM TeachesClass WHERE userId = ? )',
+                    connection.query('SELECT * FROM Program WHERE programId NOT IN (SELECT programId FROM TeachesClass WHERE userId = ? )',
                             [identification],
                             function (err, notRegistered, fields) {
                                 if (err)
                                     console.log('Error while performing Query.');
                                 else
-                                    connection.query('SELECT * FROM user WHERE userId IN (SELECT userId FROM user WHERE userId = ?);',
+                                    connection.query('SELECT * FROM User WHERE userId IN (SELECT userId FROM User WHERE userId = ?);',
                                         [identification],
                                         function (err, userexists, fields) {
                                             if (userexists.length == 0) 
