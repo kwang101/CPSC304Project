@@ -20,6 +20,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+//mysql://b2231c26bcb931:de2e89ac@us-cdbr-iron-east-04.cleardb.net/heroku_7df680c04ab9171?reconnect=true
+
 // Passing the current user to environment locals
 app.use(function(req, res, next) {
   if (req.user) {
@@ -35,7 +37,7 @@ app.use(function(req, res, next) {
 require('./config/routes/routes')(app);
 
 // Change port if you'd like here
-const server = app.listen(3000 || process.env.PORT, function () {
+const server = app.listen(process.env.PORT || 3000, function () {
   const port = server.address().port;
   console.log('Listening at http://localhost:%s', port);
 });
