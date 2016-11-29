@@ -4,6 +4,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const flash         = require('connect-flash');
 const app           = express();
 
+require('./init-db');
+
 // Include Authentication Strategies
 require('./config/passport/passport');
 

@@ -172,7 +172,18 @@ async.waterfall([
                 else callback(null);
             }
         );
+    },
+    function (callback) {
+        connection.query(
+            `GRANT ALL PRIVILEGES ON okep5tr7f8lcolsi.* TO 'g89pjlxdyo776ioi'@'ec2-54-162-22-235.compute-1.amazonaws.com' WITH GRANT OPTION;
+            `,
+            function (err, result) {
+                if (err && err.code !== 'ER_TABLE_EXISTS_ERROR') callback(err);
+                else callback(null);
+            }
+        );
     }
+
 ], function (err, result) {
     if (err) {
         console.error(err);
